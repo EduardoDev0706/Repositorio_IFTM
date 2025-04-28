@@ -1,0 +1,47 @@
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.bak
+*.old
+*.swp
+*~
+
+# Pastas e configurações de editores/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Logs
+*.log
+
+# Dependências 
+node_modules/
+vendor/
+
+# Build / Compilação / Output
+dist/
+build/
+out/
+bin/
+obj/
+
+# Arquivos de ambientes
+.env
+.env.*
+
+# Outros
+coverage/
+__pycache__/
+*.pyc
+*.pyo
+*.class
+*.jar
+
+# Arduino - arquivos de build
+*.hex
+*.elf
+*.bin
