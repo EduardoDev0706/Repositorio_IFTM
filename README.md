@@ -7,6 +7,7 @@ Este repositório contém materiais, projetos e anotações desenvolvidos durant
 
 - [ProjetoWebsiteEstatico](./ProjetoWebsiteEstatico) — Projeto de site estático desenvolvido em HTML/CSS.
 - [Arduino](./Arduino) — Projetos e exercícios práticos usando a plataforma Arduino.
+- [SistemasOperacionais](./SistemasOperacionais) — Estudo de Sistemas Operacionais.
 
 ## 🚀 Como acessar
 
