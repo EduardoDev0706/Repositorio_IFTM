@@ -1,0 +1,88 @@
+MAPA MENTAL – Fundamentos de Sistemas para Internet
+1. 🌐 Internet e Comunicação
+
+O que é Internet e Intranet
+
+Histórico e evolução da Web (Web 1.0, 2.0, 3.0)
+
+Endereçamento IP (IPv4 e IPv6)
+
+Nomes de domínio e DNS
+
+    Provedores de acesso e backbone da internet
+
+2. 📡 Protocolos de Comunicação
+
+Modelo OSI (camadas e funções)
+
+Modelo TCP/IP (camadas reais)
+
+Protocolos principais:
+
+HTTP / HTTPS
+
+TCP vs UDP
+
+FTP, SMTP, POP, IMAP
+
+        DNS
+
+3. 🧱 Estrutura de Sistemas Web
+
+Diferença entre cliente e servidor
+
+O que é frontend vs backend
+
+Requisição e resposta HTTP
+
+O que é um servidor web
+
+    Códigos de status HTTP (200, 404, 500…)
+
+4. 💻 Tecnologias para Web
+
+HTML básico (estrutura de página)
+
+CSS básico (estilização e layout)
+
+JavaScript (comportamento dinâmico básico)
+
+Responsividade e Mobile First
+
+    Acessibilidade (WCAG – conceito básico)
+
+5. 🛠️ Hospedagem e Servidores
+
+Tipos de hospedagem (compartilhada, dedicada, VPS, cloud)
+
+O que é Apache / Nginx
+
+Como registrar um domínio
+
+Como apontar um DNS
+
+    Hospedagem gratuita (ex: GitHub Pages, Render, etc.)
+
+6. 🗃️ Banco de Dados Web (Introdução)
+
+O que é um banco de dados
+
+Relacional vs Não-relacional (conceito)
+
+CRUD (Create, Read, Update, Delete)
+
+SQL básico: SELECT, INSERT, UPDATE, DELETE
+
+    Relações simples entre tabelas
+
+7. 🔒 Segurança Web (Introdução)
+
+HTTPS e certificados SSL
+
+SQL Injection e como evitar
+
+XSS e boas práticas de input
+
+    Autenticação e sessões
+
+
