@@ -1,0 +1,18 @@
+h1 {
+    color: red;
+    background-color: yellow;
+    font-family: arial;
+    font-size: 50px;
+    letter-spacing: 10px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+p {
+    font-family: arial;
+    font-size: 20px;
+    background-color: lightgray;
+    font-style: italic;
+    line-height: 3;
+
+}
