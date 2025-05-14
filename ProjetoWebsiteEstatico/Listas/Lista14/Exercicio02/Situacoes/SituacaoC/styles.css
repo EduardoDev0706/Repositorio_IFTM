@@ -1,0 +1,11 @@
+.caixa, .p {
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: white;
+    border: 5px solid blue;
+    color: red;
+    text-align: center;
+    margin: 30px;
+    border-style: dashed;
+}
