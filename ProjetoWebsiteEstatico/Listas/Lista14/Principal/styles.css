@@ -1,0 +1,59 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Corpo da página */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 40px;
+    line-height: 1.6;
+  }
+  
+  /* Título principal */
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #222;
+  }
+  
+  /* Lista de links */
+  ul {
+    list-style: none;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  ul li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    text-align: center;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  ul li:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+  }
+  
+  /* Estilo dos links */
+  a {
+    display: block;
+    padding: 12px 16px;
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    color: #005fa3;
+  }
+  
