@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.container div {
+    background-color: blue;
+    border: 2px solid black;
+    width: 33%;
+    text-align: center;
+}
