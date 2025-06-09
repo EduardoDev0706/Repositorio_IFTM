@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: black;
+}
+
+section {
+    width: 1000px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+}
+
+.programaInstitucional h2 {
+    text-align: center;
+    margin: 10px 0px 20px 0px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.container > div {
+    border: 1px solid red;
+    width: 300px;
+    padding: 15px;
+    margin: 10px;
+    transition: all 0.5s;
+    text-align: center;
+    
+}
+
+.container > div:hover {
+    background-color: aqua;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.container > div:active {
+    transform: scale(0.95);
+}

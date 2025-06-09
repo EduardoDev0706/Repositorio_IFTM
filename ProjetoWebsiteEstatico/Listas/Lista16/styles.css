@@ -1,0 +1,72 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: black;
+}
+
+section{
+    width: 1200px;
+    margin: auto;
+    background-color: white;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+    padding: 40px;
+}
+
+.container div{
+    align-items: center;
+}
+
+.modelos div:nth-of-type(1){
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.modelos div>div:nth-of-type(1) h1{
+    color: red;
+    font-size: 35px;
+}
+
+.celular{
+    width: 20%;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.celular p{
+    text-align: justify;
+    padding-bottom: 15px;
+}
+
+.celular details summary{
+    color: blue;
+    text-align: start;
+    cursor: pointer;
+}
+
+.celular2{
+    width: 30%;
+    text-align: center;
+}
+
+.celular2 p{
+    text-align: justify;
+    padding-bottom: 15px;
+}
+
+.celular2 details summary{
+    color: blue;
+    text-align: start;
+    cursor: pointer;
+}
