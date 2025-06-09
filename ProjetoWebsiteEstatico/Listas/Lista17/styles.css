@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    font-family: Arial, sans-serif;
+}
+
+section {
+    width: 1200px;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.titulo  {
+    background-color: navy;
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+    
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.imagem-produto {
+    width: 250px;
+    height: auto;
+}
+
+.detalhes {
+    flex: 1;
+}
+
+.detalhes h2 {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.detalhes p {
+    margin-bottom: 10px;
+}
+
+
