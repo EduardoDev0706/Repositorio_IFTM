@@ -7,7 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     background-color:white;
 }
 
@@ -77,8 +77,142 @@ body {
     line-height: 1.5;
 }
 
+.tecnologias {
+    padding: 60px 20px;
+    background-color: #ddd2d2;
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.tecnologias-titulo h1 {
+    color: #7B0323;
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 10px;
+}
+
+.icones-tec {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.tecnologia-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    flex-basis: 280px; 
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box; 
+}
+
+.tecnologia-item img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.tecnologia-item h2 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center; 
+}
+
+.tecnologia-item p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    max-width: 250px; 
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio {
+    padding: 60px 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.portfolio-titulo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.portfolio-titulo h1 {
+    color: #7B0323;
+    padding: 20px 0;
+    text-transform: uppercase;
+}
+
+.portfolio-item {
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto 80px auto;
+    padding: 0 20px;
+}
+
+.portfolio-item:last-child {
+    margin-bottom: 0;
+}
+
+.portfolio-texto {
+    flex: 1;
+    padding-right: 40px;
+    text-align: justify;
+}
+
+.portfolio-texto p {
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.portfolio-imagem {
+    flex-shrink: 0;
+    width: 400px;
+    height: auto;
+}
+
+.portfolio-imagem img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.item-esquerda {
+    flex-direction: row-reverse;
+}
+
+.item-esquerda .portfolio-texto {
+    padding-left: 40px;
+    padding-right: 0;
+}
+
 footer {
     text-align: center;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+    margin-right: 0;
     padding: 20px 0;
     background-color: black;
     color: white;
