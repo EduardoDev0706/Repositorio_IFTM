@@ -205,6 +205,41 @@ body {
     padding-right: 0;
 }
 
+/* --- Responsividade --- */
+
+@media (max-width: 850px) {
+    .portfolio-item {
+        flex-direction: column; 
+        text-align: center; 
+    }
+
+    .portfolio-texto {
+        padding-right: 0; 
+        padding-bottom: 20px; 
+        text-align: center; 
+    }
+
+    .item-esquerda .portfolio-texto {
+        padding-left: 0;
+        padding-bottom: 20px;
+    }
+
+    .portfolio-imagem {
+        width: 80%; 
+        max-width: 400px; 
+        margin-bottom: 20px; 
+    }
+}
+
+@media (max-width: 500px) {
+    .portfolio-titulo h1 {
+        font-size: 2em; 
+    }
+    .portfolio-item {
+        margin-bottom: 40px; 
+    }
+}
+
 footer {
     text-align: center;
     width: 100vw;
