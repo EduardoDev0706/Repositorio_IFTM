@@ -129,6 +129,50 @@ main {
     color: #555;
 }
 
+/* --- Seção de Hobbies em Destaque (Cards) --- */
+.featured-hobbies {
+    padding: 60px 20px;
+    background-color: #e9e9e9;
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+}
+
+.featured-hobbies h2 {
+    font-family: "Sixtyfour", sans-serif;
+    font-size: 2.em;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.hobby-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
+.hobby-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3 ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.hobby-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
 @media (min-width: 768px) {
     .about-content {
         flex-direction: row;
