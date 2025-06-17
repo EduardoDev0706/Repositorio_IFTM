@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Versão: Mobile */
+body {
+    background-color: red;
+    
+}
+
+body p {
+    font-size: 16px;
+}
+
+/* Versão: Tablet */
+@media screen and ((min-width: 767px) and (max-width: 1024px)) 
+{
+    body {
+        background-color: yellow;
+    }
+    
+    body p {
+        font-size: 14px;
+    }
+}
+/* Versão: Desktop */
+@media screen and (min-width: 1024px)
+{
+    body {
+        background-color: green;
+    }
+
+    body {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto';
+    line-height: 1.7em;
+}
+
+body {
+    background-color: rgb(34, 34, 34);
+}
+
+.titulo {
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+
+.titulo h1 {
+    font-size: 30px;
+}
+
+.titulo div {
+    background-image: url('img/logoManutencao.png');
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 80px;
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+}
+
+header nav {
+    background-color: darkblue;
+}
+
+header nav ul {
+    list-style: none;
+    text-align: center;
+}
+header nav ul li {
+    display: inline-block;
+}
+header nav ul a:link, header nav ul a:visited {
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px;
+    margin: 10px;
+    border-bottom: 2px solid darkblue;
+    border-top: 2px solid darkblue;
+}
+header nav ul a:hover {
+    border-bottom: 2px solid yellow;
+    border-top: 2px solid red;
+}
+
+.sectionGeral {
+    display: flex;
+    padding: 10px;
+    background-color: white;
+}
+
+.sectionManutencao img {
+    width: 600px;
+    margin: 20px;
+}
+
+.sectionManutencao p, .sectionManutencao h2 {
+    text-align: justify;
+    margin: 20px;
+}
+
+.sectionManutencao h2 {
+    color: red;
+}
+
+.sectionProdutos {
+    margin-top: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.sectionProdutos p {
+    text-align: justify;
+}
+
+.sectionProdutos div {
+    width: 25%;
+    margin: 20px;
+}
+
+.sectionProdutos h2 {
+    color: blue;
+}
+
+.sectionRodape {
+    display: flex;
+    background-color: rgb(200, 200, 200);
+    margin-top: 10px;
+    padding: 20px;
+}
+.sectionRodape div {
+    width: 50%;
+    padding-left: 50px;
+}
+.sectionRodape ul {
+    margin-left: 40px;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+
