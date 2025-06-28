@@ -7,6 +7,12 @@
     box-sizing: border-box;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 :root {
     --cor-fundo-claro: #f0f2f5;
     --cor-fundo-escuro: #2c3e50;
@@ -16,6 +22,7 @@
     --cor-destaque-hover: #2980b9;
     --cor-card-fundo: #ffffff;
     --sombra-card: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --largura-conteudo-max: 1200px;
 }
 
 body {
@@ -23,15 +30,12 @@ body {
     line-height: 1.7;
     color: var(--cor-texto-escuro);
     background-color: var(--cor-fundo-claro);
-    padding-top: 60px;
+    padding-top: 150px;
 }
-
-/* --- Estilo Mobile (Padrão) --- */
 
 .menu-navegacao {
     background-color: var(--cor-fundo-escuro);
     color: var(--cor-texto-claro);
-    padding: 1rem 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     position: fixed;
     width: 100%;
@@ -39,26 +43,28 @@ body {
     left: 0;
     z-index: 1000;
     text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
-.main-intro {
+.menu-navegacao h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
-    margin-bottom: 10px;
+    font-size: 1.5em;
     color: var(--cor-destaque);
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.main-intro p {
-    font-size: 0.95em;
-    color: var(--cor-texto-escuro);
-    line-height: 1.6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+    padding: 0 10px;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: var(--largura-conteudo-max);
     margin: 0 auto;
     padding: 0 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
 }
 
 nav ul {
@@ -79,10 +85,12 @@ nav ul li a {
     border-radius: 5px;
     display: block;
     width: 100%;
+    text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-nav ul li a:hover, nav ul li a:focus {
+nav ul li a:hover,
+nav ul li a:focus {
     background-color: var(--cor-destaque);
     color: var(--cor-fundo-escuro);
 }
@@ -91,10 +99,21 @@ main {
     padding: 30px 0;
 }
 
+.intro-section {
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+    text-align: justify;
+    font-size: 1em;
+    line-height: 1.7;
+    color: var(--cor-texto-escuro);
+}
+
 .game-showcase {
-    max-width: 1000px;
+    max-width: var(--largura-conteudo-max);
     margin: 0 auto;
     padding: 0 15px;
+    margin-bottom: 40px;
 }
 
 .section-title {
@@ -136,18 +155,10 @@ main {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.card-image-wrapepr {
+.card-image-wrapper {
     flex-shrink: 0;
     width: 90%;
     margin-bottom: 10px;
-}
-
-.card-image-wrapper img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: block;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-content h3 {
@@ -191,19 +202,23 @@ footer {
 
 @media (min-width: 768px) {
     body {
-        padding-top: 80px;
+        padding-top: 180px;
     }
 
     .menu-navegacao {
-        padding: 1.5em 0;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
     }
 
-    .main-intro h2 {
+    .menu-navegacao h2 {
         font-size: 2.2em;
+        margin-bottom: 20px;
+        padding: 0 15px;
     }
 
-    .main-intro p {
-        font-size: 1.05em;
+    .container {
+        padding: 0 20px;
+        padding-top: 20px;
     }
 
     nav ul {
@@ -214,6 +229,19 @@ footer {
     nav ul li a {
         font-size: 1.05em;
         width: auto;
+    }
+
+    .intro-section {
+        margin: 0 auto 60px auto;
+        padding: 0 30px;
+    }
+    .intro-section p {
+        font-size: 1.1em;
+    }
+
+    .game-showcase {
+        margin-top: 0;
+        margin-bottom: 60px;
     }
 
     .section-title {
@@ -233,7 +261,7 @@ footer {
         text-align: left;
     }
 
-    .game-card.right-aligned {
+    .game-card:nth-child(even) {
         flex-direction: row-reverse;
     }
 
@@ -260,84 +288,91 @@ footer {
         font-size: 0.9em;
         margin-top: 40px;
     }
+}
 
-    @media (min-width: 1024px) {
-        body {
-            padding-top: 100px; /* Mais espaço para header fixo em telas grandes */
-        }
-    
-        .menu-navegacao {
-            padding: 2rem 0; /* Padding maior */
-        }
-    
-        .main-intro h2 {
-            font-size: 3em;
-        }
-    
-        .main-intro p {
-            font-size: 1.1em;
-        }
-    
-        .container {
-            padding: 0 40px; /* Mais padding nas laterais */
-        }
-    
-        nav ul {
-            gap: 50px;
-        }
-    
-        nav ul li a {
-            font-size: 1.15em;
-        }
-    
-        main {
-            padding: 60px 0;
-        }
-    
-        .game-showcase {
-            max-width: 1100px; /* Largura máxima maior */
-        }
-    
-        .section-title {
-            font-size: 3em;
-            margin-bottom: 70px;
-        }
-    
-        .section-title::after {
-            width: 90px;
-            height: 4px;
-        }
-    
-        .game-card {
-            padding: 40px;
-            margin-bottom: 100px;
-            gap: 50px;
-        }
-    
-        .card-image-wrapper {
-            width: 40%; /* Ajuste fino da largura da imagem */
-        }
-    
-        .card-content h3 {
-            font-size: 2.2em;
-        }
-    
-        .card-content p {
-            font-size: 1.1em;
-            line-height: 1.7;
-        }
-    
-        .card-link {
-            padding: 15px 35px;
-            font-size: 1.1em;
-        }
-    
-        footer {
-            padding: 30px;
-            font-size: 1em;
-            margin-top: 60px;
-        }
+@media (min-width: 1024px) {
+    body {
+        padding-top: 200px;
     }
 
-    
+    .menu-navegacao {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .menu-navegacao h2 {
+        font-size: 3em;
+        margin-bottom: 30px;
+        padding: 0 15px;
+    }
+
+    .container {
+        padding: 0 40px;
+        padding-top: 25px;
+    }
+
+    nav ul {
+        gap: 50px;
+    }
+
+    nav ul li a {
+        font-size: 1.15em;
+    }
+
+    .intro-section {
+        margin: 0 auto 80px auto;
+        padding: 0 40px;
+    }
+    .intro-section p {
+        font-size: 1.2em;
+    }
+
+    main {
+        padding: 60px 0;
+    }
+
+    .game-showcase {
+        margin-top: 0;
+        margin-bottom: 80px;
+    }
+
+    .section-title {
+        font-size: 3em;
+        margin-bottom: 70px;
+    }
+
+    .section-title::after {
+        width: 90px;
+        height: 4px;
+    }
+
+    .game-card {
+        padding: 40px;
+        margin-bottom: 100px;
+        gap: 50px;
+    }
+
+    .card-image-wrapper {
+        width: 40%;
+    }
+
+    .card-content h3 {
+        font-size: 2.2em;
+    }
+
+    .card-content p {
+        font-size: 1.1em;
+        line-height: 1.7;
+    }
+
+    .card-link {
+        padding: 15px 35px;
+        font-size: 1.1em;
+    }
+
+    footer {
+        padding: 30px;
+        font-size: 1em;
+        margin-top: 60px;
+    }
 }
