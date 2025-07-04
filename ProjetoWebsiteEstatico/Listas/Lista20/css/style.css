@@ -1,0 +1,195 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: arial;
+}
+
+/*Versão: Mobile*/
+header nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+header nav a:link, header nav a:visited {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    color: black;
+    padding: 10px;
+}
+header nav a:hover {
+    background-color: rgb(85, 85, 85);
+    color: white;
+}
+
+section p {
+    padding: 30px 0px;
+}
+
+section:nth-of-type(odd) {
+    background-color: rgb(42, 42, 42);
+    text-align: center;
+    color: rgb(239, 239, 239);
+}
+
+section {
+    padding: 30px;
+}
+section img {
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    line-height: 1.5em;
+}
+
+input[type="button"] {
+    background-color: blue;
+    border:none;
+    color: white;
+    padding: 15px;
+    font-size:16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+input[type="button"]:hover {
+    background-color: rgb(0, 0, 151);
+}
+
+.section_planos > div > div {
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.section_planos > div > div p{
+    text-align: justify;
+}
+
+.section_planos > div > div h2 {
+    color: red;
+    font-size: 18px;
+    margin: 10px 0px 20px 0px;
+}
+
+.apps h2 {
+    color: white;
+    text-align: center;
+    margin: 10px 0px 20px 0px;
+}
+
+.apps > div p {
+    color: white;
+    text-align: justify;
+}
+
+.section_planos > div, .section_produtos > div, .section_comentarios > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.section_produtos > div > div {
+    text-align: center;
+}
+
+.section_produtos > div > div p {
+    text-align: justify;
+}
+
+.section_produtos input[type="button"] {
+    margin: 0px;
+}
+
+.section_produtos > div > div {
+    text-align: center;
+    padding: 20px 0px;
+}
+
+
+figcaption {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.comentarios > div  {
+    border-radius: 8px;
+    margin: 10px auto;
+    background-color: #3498db;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    cursor: pointer;
+    will-change: transform;
+}
+
+.comentarios > div:active {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.comentarios > div h2 {
+    padding-top: 10px;
+}
+
+.comentarios > div p {
+    text-align: justify;
+    padding: 15px 10px;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 50px;
+}
+
+/*Versão: Tablet e Desktop*/
+@media screen and (min-width:768px) {
+    header nav ul {
+        flex-direction: row;
+        justify-content: right;
+    }
+    header nav a:link, header nav a:visited {
+        padding: 15px 25px;
+    }
+    
+    section > div {
+        width: 1200px;
+        margin: auto;
+    }
+
+    .section_planos > div, .section_produtos > div, .section_comentarios > div {
+        flex-direction: row;
+    }
+
+    .section_planos > div > div, .section_produtos > div > div{
+        padding: 0px 30px;
+    }
+
+    figcaption {
+        font-size: 24px;
+    }
+
+    .comentarios > div {
+        margin: 20px 10px;
+    }
+
+    .comentarios > div p {
+        font-size: 1.2em;
+    }
+
+    .comentarios > div:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    
+
+    
+
+}
