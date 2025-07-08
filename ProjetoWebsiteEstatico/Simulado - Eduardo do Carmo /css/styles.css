@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+}
+/*Versão: Mobile*/
+header nav {
+    background-color: rgb(10, 10, 110);
+} 
+header ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding: 0;
+}
+
+header ul li {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header ul li:last-child {
+    border-bottom: none;
+}
+
+header ul a:link, header ul a:visited {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+header ul a:hover {
+    text-decoration: underline;
+}
+
+header img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.secaoCinza {
+    background-color:rgb(221, 221, 221);
+}
+
+main p {
+    margin: 15px 0px;
+    text-align: justify;
+}
+
+input[type="button"] {
+    padding: 10px 20px;
+    border: 0px;
+    border-radius: 5px;
+    margin: 5px 0;
+    /* cursor: pointer; */
+}
+.btnPreto {
+    background-color: black;
+    color: white;
+}
+.btnPreto:hover {
+    background-color: orangered;
+}
+.btnAzul {
+    background-color: rgb(11, 11, 155);
+    color: white;
+}
+.btnAzul:hover {
+    background-color: orangered;
+}
+
+.secaoBranca {
+    background-color: white;
+}
+
+main section {
+    padding: 20px 15px;
+    width: 100%;
+    margin: auto;
+}
+
+main section h1 {
+    font-size: 28px;
+    text-align: center;
+}
+
+main section h2 {
+    font-size: 20px;
+    text-align: center;
+}
+
+main section h1, main section h2 {
+    margin: 15px 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.container > div {
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.container img {
+    width: 90%;
+    height: auto;
+}
+
+.secaoCompromissos h2 {
+    text-align: center;
+}
+
+footer p {
+    text-align: center;
+    color: white;
+    padding: 30px 15px;
+}
+
+/*Versão Desktop*/
+@media screen and (min-width:768px) {
+    
+    header ul {
+        flex-direction: row;
+        justify-content: center;
+        width: 1200px;
+        padding: 0 10px;
+    }
+
+    header ul li {
+        padding: 20px 20px;
+        border-bottom: none;
+    }
+    
+    main p {
+        margin: 20px 0px;
+    }
+
+    main section {
+        padding: 50px 20px;
+        width: 1200px;
+    }
+
+    main section h1 {
+        font-size: 40px;
+        text-align: left;
+    }
+
+    main section h2 {
+        font-size: 25px;
+        text-align: left;
+    }
+
+    main section h1,
+    main section h2 {
+        margin: 20px 0;
+    }
+
+    input[type="button"] {
+        cursor: pointer;
+        gap: 10px;
+    }
+
+    .container {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .container > div {
+        width: 50%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .container img {
+        width: 90%;
+        max-width: none;
+    }
+
+    .secaoCompromissos h2 {
+        text-align: left;
+    }
+
+    form {
+        display: inline-block;
+    }
+
+    footer p {
+        padding: 50px 20px;
+    }
+}
