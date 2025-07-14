@@ -1,4 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+:root {
+    /* Paleta "Belezas Naturais do Brasil" */
+    --azul-oceano-profundo: #003366; 
+    --verde-floresta-viva: #006633; 
+    --preto-rocha-vulcanica: #1A1A1A; 
+    --branco-areia-classica: #F8F8F8; 
+    --dourado-destaque: #FFD700;
+}
 
 * {
     margin: 0;
@@ -6,131 +15,190 @@
     box-sizing: border-box;
 }
 
-:root {
-    /* Cores Zelda */
-    --verde-escuro:#026012;
-    --dourado:#FFD700;
+/* Mobile First */
 
-    /* Cores Metroid */
-    --roxo-sombrio:#5B3A6A;
-    --azul-sombrio:#0F68B8;
-
-    /* Cores Tetris */
-    --azul:#0341AE;
-    --verde:#72CB3B;
-    --amarelo:#FFD500;
-    --laranja:#FF971C;
-    --vermelho:#FF3213;
-
-     /* Cores Base MDN */
-     --cor-fundo-escuro: #1A1A1A; 
-     --cor-texto-claro: #F8F9FA; 
-     --cor-bloco-fundo: rgba(255, 255, 255, 0.05);
-     --cor-borda-bloco-escuro: rgba(255, 255, 255, 0.1);
-}
-
-/*Mobile Version*/
-
-.main-body {
-    background-color: var(--cor-fundo-escuro);
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--preto-rocha-vulcanica);
+    color: var(--branco-areia-classica);
+    line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    color: var(--cor-texto-claro);
-    font-family: Arial, sans-serif;
 }
 
-header {
-    background-color: var(--dourado);
-    padding: 0;
-    text-align: center;
-}
-
-header h1 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.5em;
-    color: var(--verde-escuro);
-    padding: 10px 0;
+h1, h2, h3 { 
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; 
+    color: var(--verde-floresta-viva);
 }
 
 header ul {
-    text-align: center;
-    padding: 10px;
     list-style: none;
-    background-color: var(--azul-sombrio);
 }
 
-header ul li {
-    display: inline-block;
-    padding: 10px;
-}
-
-header ul li a {
-    color: white;
+a {
+    color: var(--azul-oceano-profundo);
     text-decoration: none;
-    font-size: 0.8em;
-    font-family: 'Press Start 2P', cursive;
-    transition: color 0.2s ease, background-color 0.2s ease;
-    display: block;
+    transition: color 0.3s ease;
 }
 
-header ul li a:active {
-    color: var(--dourado);
-    text-shadow: 0 0 8px var(--dourado);
-    transform: scale(0.98);
+a:hover {
+    color: var(--verde-floresta-viva);
 }
 
-header ul li:last-child {
-    border-bottom: none;
-}
-
-.intro-page {
-    font-size: 1.5em;
-    flex-grow: 1;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-}
-
-.intro-page h2{
-    font-size: 1.3em;
-    color: var(--cor-texto-claro);
-}
-
-.container {
+.main-header {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    color: var(--branco-areia-classica);
+    text-align: center;
 }
 
-.container > div {
-    
-    background-color: rgba(255, 255, 255, 0.1);
+.main-header h1 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: var(--branco-areia-classica);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.main-header nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.main-header nav ul li a {
+    color: var(--branco-areia-classica);
+    font-weight: bold;
+    padding: 8px 15px;
+    border: 1px solid var(--branco-areia-classica);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.main header nav ul li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dourado-destaque);
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease;
+}
+
+.main-header nav ul li a:hover::after,
+.main-header nav ul li a:focus::after, 
+.main-header nav ul li a:active::after { 
+    transform: scaleX(1); 
+}
+
+.main-header nav ul li a:hover,
+.main-header nav ul li a:focus,
+.main-header nav ul li a:active {
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: var(--branco-areia-classica); 
+}
+
+.main-content {
+    width: 100%;
+    padding: 15px;
+    margin: 20px auto;
+    background-color: var(--preto-rocha-vulcanica);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    flex-grow: 1;
+}
+
+.main-content section {
+    padding: 25px 15px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.main-content section:last-child {
+    margin-bottom: 0;
+}
+
+.main-content h2 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 0.95em;
 }
 
 footer {
     text-align: center;
-    background-color: black;
-    color: white;
-    padding: 10px;
-    font-family: Arial, sans-serif;
+    background-color: var(--preto-rocha-vulcanica);
+    color: var(--branco-areia-classica);
+    padding: 15px;
+    font-family: 'Open Sans', sans-serif;
     font-size: 0.8em;
+    margin-top: auto;
 }
 
 /* Desktop Version */
 @media (min-width: 769px) {
-    header h1 {
-        font-size: 1.8em; /* Restaura o tamanho maior para telas maiores que 768px */
+    .main-header {
+        height: 500px;
     }
 
-    .intro-page h2 {
-        font-size: 1.5em; /* Restaura o tamanho maior para o h2 em telas maiores */
+    .header-content-wrapper {
+        padding: 30px;
+        background-color: rgba(0, 0, 0, 0.5);
+        max-width: 800px;
     }
 
-    header ul li a:hover {
-        color: var(--dourado);
-        text-shadow: 0 0 5px var(--dourado);
-    } 
+    .main-header h1 {
+        font-size: 3em;
+    }
+
+    .main-header nav ul {
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    .main-header nav ul li a {
+        font-size: 1em;
+        padding: 10px 20px;
+        border-width: 2px;
+    }
+
+    .main-content {
+        max-width: 1200px;
+        padding: 40px;
+    }
+
+    .main-content section {
+        padding: 50px 40px;
+        margin-bottom: 40px;
+    }
+
+    .main-content h2 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    footer {
+        padding: 20px;
+    }
 }
+
+
