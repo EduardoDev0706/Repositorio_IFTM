@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status de Aprovação</title>
+</head>
+<body>
+
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        let nota1 = parseFloat(prompt("Informe a nota do 1º bimestre:"));
+        let nota2 = parseFloat(prompt("Informe a nota do 2º bimestre:"));
+        let somaNotas = nota1 + nota2;
+
+        if (somaNotas >= 60.0) {
+            alert("Parabéns! Você foi aprovado(a) na disciplina.");
+        } else {
+            let pontosFaltantes = 60.0 - somaNotas;
+            alert("Você foi reprovado(a). Faltam " + pontosFaltantes.toFixed(2) + " pontos para a aprovação.");
+        }
+    </script>
+</body>
+</html>

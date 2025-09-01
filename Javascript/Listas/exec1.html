@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome Completo</title>
+</head>
+<body>
+    <p id="nomeCompleto"></p>
+
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        let primeiroNome = prompt("Por favor, digite seu primeiro nome:");
+        let sobrenome = prompt("Agora, digite seu sobrenome:");
+        let nomeCompleto = primeiroNome + " " + sobrenome;
+        document.getElementById("nomeCompleto").innerText = "Seu nome completo é: " + nomeCompleto;
+    </script>
+</body>
+</html>

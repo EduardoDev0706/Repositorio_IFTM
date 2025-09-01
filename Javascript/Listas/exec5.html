@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantidade de Caracteres</title>
+</head>
+<body>
+    <p id="tamanhoNome"></p>
+
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        let nome = prompt("Por favor, digite seu nome completo:");
+        let quantidadeCaracteres = nome.length;
+        document.getElementById("tamanhoNome").innerText = "O seu nome tem " + quantidadeCaracteres + " caracteres.";
+    </script>
+</body>
+</html>

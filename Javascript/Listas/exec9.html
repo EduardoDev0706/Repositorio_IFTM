@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+
+    <a href="main.html">Clique aqui para voltar</a>
+    
+    <script>
+        let expressao = prompt("Por favor, digite uma expressão matemática (ex: ((5*8)-9)):");
+        try {
+            let resultado = eval(expressao);
+            alert("O resultado da expressão é: " + resultado);
+        } catch (e) {
+            alert("Expressão matemática inválida.");
+        }
+    </script>
+</body>
+</html>

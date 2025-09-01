@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cor RGB</title>
+</head>
+<body>
+    <h1 id="texto"></h1>
+
+    <a href="main.html">Clique aqui para voltar</a>
+    
+    <script>
+        let r = parseInt(prompt("Digite o valor para R (vermelho), entre 0 e 255:"));
+        let g = parseInt(prompt("Digite o valor para G (verde), entre 0 e 255:"));
+        let b = parseInt(prompt("Digite o valor para B (azul), entre 0 e 255:"));
+
+        if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255) {
+            let cor = "rgb(" + r + ", " + g + ", " + b + ")";
+            let textoElemento = document.getElementById("texto");
+            textoElemento.innerText = "Fundamentos de Web Design II";
+            textoElemento.style.color = cor;
+        } else {
+            alert("Valores RGB inválidos. Por favor, digite valores entre 0 e 255.");
+        }
+    </script>
+</body>
+</html>

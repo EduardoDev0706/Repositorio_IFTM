@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repetir Nome</title>
+</head>
+<body>
+    <div id="nomes"></div>
+
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        let quantidade = parseInt(prompt("Digite um valor inteiro positivo (X) maior do que zero:"));
+        if (quantidade > 0) {
+            let nome = prompt("Agora, digite seu nome completo:");
+            let container = document.getElementById("nomes");
+            for (let i = 0; i < quantidade; i++) {
+                container.innerHTML += nome + "<br>";
+            }
+        } else {
+            alert("O valor digitado não é um inteiro positivo válido.");
+        }
+    </script>
+</body>
+</html>
