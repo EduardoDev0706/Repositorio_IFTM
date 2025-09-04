@@ -52,6 +52,12 @@ public class App {
                 case 4:
                     exibirTriangulo(myObj);
                     break;
+                case 5:
+                    operacaoComOsValores(myObj);
+                    break;
+                case 6:
+                    exibirFatorial(myObj);
+                    break;
                 case 17:
                     System.out.println("Encerrando...");
                     break;
@@ -218,4 +224,95 @@ public class App {
         return a + b > c && a + c > b && b + c > a;
     }
 
+    // Aplicação 05
+    public static void exibirSomatoria(int[] contadores) {
+        // Demonstração do resultado para o usuário
+        System.out.println("----------------------------------------");
+        System.out.println("Somas positivas = " + contadores[0]);
+        System.out.println("Somas negativas = " + contadores[1]);
+    }
+
+    public static int[] contadorDeValores(Scanner myObj) {
+        int somasPositivas = 0;
+        int somasNegativas = 0;
+        int numeroLido;
+
+        System.out.println("Digite N números (digite 0 para finalizar):");
+
+        do {
+            numeroLido = myObj.nextInt();
+            myObj.nextLine();
+
+            if (numeroLido > 0) {
+                somasPositivas++;
+            } else if (numeroLido < 0) {
+                somasNegativas++;
+            }
+
+        } while (numeroLido != 0);
+
+        return new int[] { somasPositivas, somasNegativas };
+    }
+
+    public static void operacaoComOsValores(Scanner myObj) {
+        // Chama a função que realiza a contagem
+        int[] resultados = contadorDeValores(myObj);
+
+        // Passa o array de resultados para a função de exibição
+        exibirSomatoria(resultados);
+
+    }
+
+    // Aplicação 06
+    public static void exibirFatorial(Scanner myObj) {
+        // Exibe o resultado para o usuário
+        String continuar;
+
+        do {
+            int[] valores = leitorFatorial(myObj);
+            int numero = valores[0];
+
+            long resultado = operadorFatorial(numero);
+
+            if (resultado != -1) {
+                System.out.println("O fatorial de " + numero + " é " + resultado);
+            }
+
+            System.out.println("\nQuer repetir a operação com outro valor? Digite 'S' ou 's'.");
+            continuar = myObj.nextLine();
+
+        } while (continuar.equalsIgnoreCase("s"));
+    }
+
+    public static int[] leitorFatorial(Scanner myObj) {
+        System.out.println("Digite o valor de um número inteiro: ");
+        int numero = myObj.nextInt();
+        myObj.nextLine();
+
+        return new int[] { numero };
+    }
+
+    public static long operadorFatorial(int numero) {
+
+        if (numero < 0) {
+            System.out.println("Erro: O fatorial não é definido para números negativos.");
+            return -1;
+        }
+
+        if (numero == 0) {
+            return 1;
+        }
+
+        long fatorial = 1;
+        for (int i = 1; i <= numero; i++) {
+            fatorial = fatorial * i;
+        }
+
+        return fatorial;
+    }
+
+    // Aplicação 07
+    
+
 }
+
