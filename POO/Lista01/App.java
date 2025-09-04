@@ -46,6 +46,12 @@ public class App {
                 case 2:
                     exibirBhaskara(myObj);
                     break;
+                case 3:
+                    exibirComparacaoMedia(myObj);
+                    break;
+                case 4:
+                    exibirTriangulo(myObj);
+                    break;
                 case 17:
                     System.out.println("Encerrando...");
                     break;
@@ -104,14 +110,12 @@ public class App {
     }
 
     // Aplicação 02
-    public static void exibirBhaskara(Scanner myObj)
-    {   
+    public static void exibirBhaskara(Scanner myObj) {
         double[] coeficientes = inserirValoresParaBhaskara(myObj);
         calcularBhaskara(coeficientes[0], coeficientes[1], coeficientes[2]);
     }
 
-    public static double[] inserirValoresParaBhaskara(Scanner myObj)
-    {
+    public static double[] inserirValoresParaBhaskara(Scanner myObj) {
         System.out.println("--- Raízes da Equação de Segundo Grau ---");
         System.out.print("Digite o valor do coeficiente a: ");
         double a = myObj.nextDouble();
@@ -123,13 +127,12 @@ public class App {
 
         System.out.print("Digite o valor do coeficiente c: ");
         double c = myObj.nextDouble();
-        myObj.nextLine();        
+        myObj.nextLine();
 
-         return new double[]{a, b, c};
+        return new double[] { a, b, c };
     }
 
-    public static void calcularBhaskara(double a, double b, double c)
-    {
+    public static void calcularBhaskara(double a, double b, double c) {
         if (a == 0) {
             System.out.println("Não é uma equação de segundo grau.");
             return;
@@ -142,7 +145,8 @@ public class App {
         if (delta < 0) {
             System.out.println("A equação não possui raizes reais.");
         } else if (delta == 0) {
-            double x = -b / (2 * 0);
+            // **CORREÇÃO APLICADA AQUI**
+            double x = -b / (2 * a);
             System.out.println("A equação possui uma raíz real: x = " + x);
         } else {
             double x1 = (-b + Math.sqrt(delta)) / (2 * a);
@@ -151,6 +155,67 @@ public class App {
             System.out.println("x1 = " + x1);
             System.out.println("x2 = " + x2);
         }
+    }
+
+    // Aplicação 03
+    public static void exibirComparacaoMedia(Scanner myObj) {
+        // Exibe o resultado pro usuário
+        int valores[] = inserirValoresMediaAritmetica(myObj);
+        fazerMediaDeValores(valores[0], valores[1]);
+    }
+
+    public static int[] inserirValoresMediaAritmetica(Scanner myObj) {
+        System.out.println("Insira um valor inteiro: ");
+        int x1 = myObj.nextInt();
+        System.out.println("Digite outro valor inteiro: ");
+        int x2 = myObj.nextInt();
+        myObj.nextLine();
+
+        return new int[] { x1, x2 };
+    }
+
+    public static void fazerMediaDeValores(int x1, int x2) {
+        int mediaDeValores = (x1 + x2) / 2;
+        System.out.println("A média dos valores de x1: " + x1 + " e x2: " + x2 + " é: " + mediaDeValores);
+    }
+
+    // Aplicação 04
+    public static void exibirTriangulo(Scanner myObj) {
+        // Exibe o resultado ao usuário
+        double[] medidas = medidasTriangulo(myObj);
+        double a = medidas[0];
+        double b = medidas[1];
+        double c = medidas[2];
+
+        if (verificadorDeTriangulo(a, b, c)) {
+            // Lógica para determinar o tipo de triângulo
+            if (a == b && b == c) {
+                System.out.println("Esse triângulo é real e é do tipo Equilátero.");
+            } else if (a == b || a == c || b == c) {
+                System.out.println("Esse triângulo é real e é do tipo Isósceles.");
+            } else {
+                System.out.println("Esse triângulo é real e é do tipo Escaleno.");
+            }
+        } else {
+            System.out.println("Esse triângulo é irreal.");
+        }
+    }
+
+    public static double[] medidasTriangulo(Scanner myObj) {
+        System.out.println("Inserindo valores do triângulo: ");
+        System.out.print("\nInsira o primeiro valor: ");
+        double a = myObj.nextDouble();
+        System.out.print("Insira o segundo valor: ");
+        double b = myObj.nextDouble();
+        System.out.print("Insira o terceiro valor: ");
+        double c = myObj.nextDouble();
+        myObj.nextLine();
+
+        return new double[] { a, b, c };
+    }
+
+    public static boolean verificadorDeTriangulo(double a, double b, double c) {
+        return a + b > c && a + c > b && b + c > a;
     }
 
 }
