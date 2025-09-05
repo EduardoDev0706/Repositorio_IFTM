@@ -312,7 +312,25 @@ public class App {
     }
 
     // Aplicação 07
-    
+    public static void exibirSomaImparesEPares(Scanner myObj)
+    {
+        // Exibir o resultado para o usuário
+    }
+
+    public static int[] valoresImparesEPares(Scanner myObj)
+    {
+        int contadorImpar = 0;
+        int contadorPar = 0;
+        int somasPositivas = 0;
+        int somasNegativas = 0;
+        int numeroLido;
+
+        System.out.println("Digite N números, sejam positivos ou negativos (digite 0 para finalizar):");
+        
+        do {
+            numeroLido = myObj.nextInt();
+        }
+    }
 
 }
 
