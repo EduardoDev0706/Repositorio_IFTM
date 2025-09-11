@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <a href="main.html">Clique aqui para voltar</a>
+    
+    <script>
+        alert("Sugestões de números da mega-sena!");
+
+        const numerosSugeridos = [];
+        const quantidadeNumeros = 6;
+        const min = 1;
+        const max = 60;
+
+        for (let i = 0; i < quantidadeNumeros; i++) {
+            const numero = Math.floor(Math.random() * (max - min + 1)) + min;
+            numerosSugeridos.push(numero);
+        }
+
+        document.write("<h2> Os números sugeridos para você são: " + numerosSugeridos + "</h2>");
+        
+    </script>
+</body>
+</html>

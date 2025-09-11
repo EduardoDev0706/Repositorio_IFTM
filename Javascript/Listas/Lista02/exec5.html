@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p id="resultado"></p>
+    <p id="ganhador"></p>
+
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        alert("Hora de iniciar o sorteio! Infomem suas idades para fazermos uma média.")
+
+        // Cria uma array de objetos para salvar os candidatos em uma lista
+        let candidatos = [];
+        let totalIdades = 0;
+        const numCandidatosInput = prompt("Quantos candidatos ao sorteio temos no ônibus?");
+        const numeroCandidatos = parseInt(numCandidatosInput, 10);
+
+        // Verifica se o número de candidatos é válido
+        if (isNaN(numeroCandidatos) || numeroCandidatos <= 0) {
+            document.getElementById("resultado").innerText = "Número de candidatos inválido. Por favor, recarregue a página e informe um número maior que zero.";
+        } else {
+            // Um loop que insere cada candidato na lista com suas devidas informações
+            for (let i = 1; i <= numeroCandidatos; i++) {
+                let nome = prompt(`Candidato número 0${i}, qual o seu nome?`);
+                let idade;
+                let idadeValida = false;
+
+                do {
+                    let idadeInput = prompt(`${nome}, qual a sua idade? `);
+                    idade = parseInt(idadeInput, 10);
+
+                    if (!isNaN(idade)) {
+                        idadeValida = true;
+                    } else {
+                        alert("Idade inválida. Por favor, digite um número.");
+                    }
+                } while (!idadeValida);
+
+                candidatos.push({
+                    nome: nome,
+                    idade: idade
+                });
+
+                totalIdades += idade;
+            }
+        }
+
+
+        const media = totalIdades / numeroCandidatos;
+
+        // Constroi a mensagem com a lista de candidatos
+        let listaCandidatos = "Candidatos:\n";
+        candidatos.forEach(candidato => {
+            listaCandidatos += `- ${candidato.nome}: ${candidato.idade} anos \n`;
+        });
+
+        // Exibe a lista e a média
+        document.getElementById("resultado").innerText = `${listaCandidatos}\nA média das idades é: ${media.toFixed(2)}`;
+
+        // Sorteio do candidato
+        const indiceSorteado = Math.floor(Math.random() * candidatos.length);
+        const ganhador = candidatos[indiceSorteado];
+
+        document.getElementById("ganhador").innerText = `\n🎉 O GANHADOR DO SORTEIO É: ${ganhador.nome.toUpperCase()}! 🎉`;
+
+
+    </script>
+
+</body>
+
+</html>

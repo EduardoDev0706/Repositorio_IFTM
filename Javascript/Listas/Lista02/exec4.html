@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+
+        const nInput = prompt("Digite um valor N: ");
+        const mInput = prompt("Digite um valor M: ");
+        
+        const N = parseInt(nInput, 10);
+        const M = parseInt(mInput, 10);
+
+        if(isNaN(N) || isNaN(M) || N >= M) {
+            document.write("Entrada inválida, por favor reinicie a página e defina um intervalo entre dois números válido.");
+        } else {
+            const numeroAleatorio = Math.floor(Math.random() * (M - N + 1)) + N;
+
+            document.write("<h1>Seu número aleatório entre " + N + " e " + M + " é: " + numeroAleatorio + "</h1>");
+        }
+
+    </script>
+    
+</body>
+</html>
