@@ -4,10 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        #dadoImg {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+        }
+        h1 {
+            color: #333;
+        }
+
+        a {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
+    <h1>Dado Girado:</h1>
+    <img id="dadoImg" src="" alt="Imagem do Dado">
+
     <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        const min = 1;
+        const max = 6;
+
+        const numeroSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        const dadoImagem = document.getElementById("dadoImg");
+
+        dadoImagem.src = `/imgExec7/dado${numeroSorteado}.png`;
+        dadoImagem.alt = `Dado monstrando a face ${numeroSorteado}`;
+    </script>
     
 </body>
 </html>

@@ -4,10 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container-placar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        .placar-mãos {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .mao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+        }
+        .mao img {
+            width: 150px; 
+            height: 150px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 
     <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        const jokenpo = ["Pedra", "Papel", "Tesoura"];
+
+        const jogador1 = Math.floor(Math.random() * 3);
+        const jogador2 = Math.floor(Math.random() * 3);
+
+        document.write('<div class="container-placar">');
+
+        if (jogador1 == jogador2) {
+            document.write('<h1>Empate!</h1>');
+        } else if (
+            (jogador1 === 0 && jogador2 === 2) ||
+            (jogador1 === 1 && jogador2 === 0) ||
+            (jogador1 === 2 && jogador2 === 1)
+        ) {
+            document.write('<h1>Jogador 1 ganhou!</h1>');
+        } else {
+            document.write('<h1>Jogador 2 ganhou!</h1>');
+        }
+
+        document.write('<div class="placar-mãos">');
+
+        // Mão do Jogador 1
+        document.write('<div class="mao">');
+        document.write('<p>Jogador 1</p>');
+        switch(jogador1) {
+            case 0:
+                document.write('<img src="/imgExec8/pedra.png" alt="Pedra">');
+                break;
+            case 1:
+                document.write('<img src="/imgExec8/papel.png" alt="Papel">');
+                break;
+            case 2:
+                document.write('<img src="/imgExec8/tesoura.png" alt="Tesoura">');
+                break;
+        }
+        document.write('</div>');
+
+        // Mão do Jogador 2
+        document.write('<div class="mao">');
+        document.write('<p>Jogador 2</p>');
+        switch(jogador2) {
+            case 0:
+                document.write('<img src="/imgExec8/pedra.png" alt="Pedra">');
+                break;
+            case 1:
+                document.write('<img src="/imgExec8/papel.png" alt="Papel">');
+                break;
+            case 2:
+                document.write('<img src="/imgExec8/tesoura.png" alt="Tesoura">');
+                break;
+        }
+        document.write('</div>');
+
+        document.write('</div>'); 
+        document.write('</div>'); 
+    </script>
     
 </body>
 </html>

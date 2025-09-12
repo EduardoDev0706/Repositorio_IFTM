@@ -1,13 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container-jogador {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .cartas {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .cartas img {
+            width: 80px;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        a {
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
 
+    <h1>Jogue Truco</h1>
+    <h2>Cartas sorteadas</h2>
+
     <a href="main.html">Clique aqui para voltar</a>
-    
+
+    <script>
+         // Criar o baralho com base nos nomes de arquivos
+        const baralho = [];
+        const totalCartas = 27;
+
+        for (let i = 1; i <= totalCartas; i++) {
+            baralho.push(`/cartas/carta${i}.png`);
+        }
+        
+        // Embaralhar o baralho (Algoritmo Fisher-Yates)
+        // Ps: Muita pesquisa envolvida pra isso, céus!!!
+        for (let i = baralho.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [baralho[i], baralho[j]] = [baralho[j], baralho[i]];
+        }
+
+        // Distribuir 3 cartas para cada um dos 4 jogadores
+        const jogadores = [[], [], [], []];
+        const numeroJogadores = 4;
+        const cartasPorJogador = 3;
+
+        for (let i = 0; i < numeroJogadores * cartasPorJogador; i++) {
+            // Verifica se ainda há cartas no baralho antes de distribuir
+            if (baralho.length > 0) {
+                jogadores[i % numeroJogadores].push(baralho.pop());
+            } else {
+                console.error("Não há cartas suficientes para a distribuição completa.");
+                break;
+            }
+        }
+
+        // Exibir as cartas de cada jogador
+        for (let i = 0; i < jogadores.length; i++) {
+            document.write(`<div class="container-jogador">`);
+            document.write(`<h2>Jogador ${i + 1}</h2>`);
+            document.write(`<div class="cartas">`);
+            for (const carta of jogadores[i]) {
+                document.write(`<img src="${carta}" alt="Carta">`);
+            }
+            document.write(`</div>`);
+            document.write(`</div>`);
+        }
+    </script>
+
 </body>
+
 </html>

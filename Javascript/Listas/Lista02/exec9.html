@@ -7,8 +7,28 @@
 </head>
 <body>
 
+    <h1>Ordem de Apresentação dos grupos</h1>
+
     <a href="main.html">Clique aqui para voltar</a>
     
+    
+
+    <script>
+        const qtdGrupos = parseInt(prompt("Digite a quantidade de grupos: "));
+        const nome = [];
+
+        for (var i = 0; i < qtdGrupos; i++) {
+            nome[i] = prompt("Digite o nome do grupo: " + (i + 1));
+        }
+
+        for (i = 0; i < qtdGrupos; i++) {
+            const grupoAleatorio = Math.floor(Math.random() * nome.length);
+
+            document.write(`<center>${i + 1}° ${nome[grupoAleatorio]}`);
+            nome.splice(grupoAleatorio, 1);
+        }
+
+    </script>
     
 </body>
 </html>
