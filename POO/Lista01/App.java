@@ -10,6 +10,7 @@ public class App {
         Scanner myObj = new Scanner(System.in);
 
         do {
+
             limparConsole();
 
             System.out.println("-----------------------------------------------------------");
@@ -58,6 +59,36 @@ public class App {
                 case 6:
                     exibirFatorial(myObj);
                     break;
+                case 7:
+                    exibirSomaImparesEPares(myObj);
+                    break;
+                case 8:
+                    exibirNumeroPrimo(myObj);
+                    break;
+                case 9:
+                    exibirFatorialDois(myObj);
+                    break;
+                case 10:
+                    exibirMMC(myObj);
+                    break;
+                case 11:
+                    exibirMDC(myObj);
+                    break;
+                case 12:
+                    exibirFibonacci(myObj);
+                    break;
+                case 13:
+                    exibirPA(myObj);
+                    break;
+                case 14:
+                    exibirPG(myObj);
+                    break;
+                case 15:
+                    exibirTabuada(myObj);
+                    break;
+                case 16:
+                    exibirNumeroPerfeito(myObj);
+                    break;
                 case 17:
                     System.out.println("Encerrando...");
                     break;
@@ -69,6 +100,7 @@ public class App {
             if (opcao != 17) {
                 System.out.print("\nPressione ENTER para continuar");
                 myObj.nextLine();
+
             }
 
         } while (opcao != 17);
@@ -312,25 +344,400 @@ public class App {
     }
 
     // Aplicação 07
-    public static void exibirSomaImparesEPares(Scanner myObj)
-    {
+    public static void exibirSomaImparesEPares(Scanner myObj) {
         // Exibir o resultado para o usuário
+        int[] resultados = contadorDeValoresImparesEPares(myObj);
+        exibirContador(resultados);
     }
 
-    public static int[] valoresImparesEPares(Scanner myObj)
-    {
-        int contadorImpar = 0;
-        int contadorPar = 0;
-        int somasPositivas = 0;
-        int somasNegativas = 0;
+    public static int[] contadorDeValoresImparesEPares(Scanner myObj) {
+        int somaPares = 0, qtdPares = 0;
+        int somaImpares = 0, qtdImpares = 0;
+        int somaPositivos = 0, qtdPositivos = 0;
+        int somaNegativos = 0, qtdNegativos = 0;
         int numeroLido;
 
         System.out.println("Digite N números, sejam positivos ou negativos (digite 0 para finalizar):");
-        
+
         do {
+            while (!myObj.hasNextInt()) {
+                System.out.println("Entrada inválida, por favor digite um número inteiro.");
+                myObj.next();
+            }
+
             numeroLido = myObj.nextInt();
-        }
+            myObj.nextLine();
+
+            if (numeroLido != 0) {
+                // Contador de somas impares e pares
+                if (numeroLido % 2 == 0) {
+                    somaPares += numeroLido;
+                    qtdPares++;
+                } else {
+                    somaImpares += numeroLido;
+                    qtdImpares++;
+                }
+
+                // Contador de somas positivas negativas e positivas
+                if (numeroLido > 0) {
+                    somaPositivos += numeroLido;
+                    qtdPositivos++;
+                } else {
+                    somaNegativos += numeroLido;
+                    qtdNegativos++;
+                }
+            }
+
+        } while (numeroLido != 0);
+
+        return new int[] {
+                somaPares, qtdPares,
+                somaImpares, qtdImpares,
+                somaPositivos, qtdPositivos,
+                somaNegativos, qtdNegativos
+        };
     }
 
-}
+    public static void exibirContador(int[] resultados) {
+        // Mapeamento dos índices da array:
+        // [0] = somaPares, [1] = qtdPares
+        // [2] = somaImpares, [3] = qtdImpares
+        // [4] = somaPositivos, [5] = qtdPositivos
+        // [6] = somaNegativos, [7] = qtdNegativos
 
+        System.out.println("----------------------------------------");
+        System.out.println("--- Resultados dos Cálculos ---");
+        System.out.println("Soma de números pares: " + resultados[0]);
+        System.out.println("Quantidade de números pares: " + resultados[1]);
+        System.out.println("Soma de números ímpares: " + resultados[2]);
+        System.out.println("Quantidade de números ímpares: " + resultados[3]);
+        System.out.println("Soma de números positivos: " + resultados[4]);
+        System.out.println("Quantidade de números positivos: " + resultados[5]);
+        System.out.println("Soma de números negativos: " + resultados[6]);
+        System.out.println("Quantidade de números negativos: " + resultados[7]);
+        System.out.println("----------------------------------------");
+    }
+
+    // Aplicação 08
+    public static void exibirNumeroPrimo(Scanner myObj) {
+        // Exibe o resultado ao usuário
+        int numero = leitorNumeroPrimo(myObj);
+        boolean ehPrimo = operadorNumeroPrimo(numero);
+
+        if (ehPrimo) {
+            System.out.println("O número " + numero + " é primo.");
+        } else {
+            System.out.println("O número " + numero + " não é primo.");
+        }
+
+    }
+
+    public static int leitorNumeroPrimo(Scanner myObj) {
+        System.out.println("Digite um número e verifique se é primo: ");
+
+        int numeroLido = myObj.nextInt();
+        myObj.nextLine();
+
+        return numeroLido;
+    }
+
+    public static boolean operadorNumeroPrimo(int numero) {
+        if (numero <= 1) {
+            System.out.println("O valor inserido não pode ser um número primo.");
+            return false;
+        }
+
+        for (int i = 2; i <= Math.sqrt(numero); i++) {
+            if (numero % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    // Aplicação 09
+    public static void exibirFatorialDois(Scanner myObj) {
+        // Exibe o resultado para o usuário
+        int numero = leiorFatorialDois(myObj);
+        long resultado = operadorFatorialDois(numero);
+
+        if (resultado != -1) {
+            System.out.println("O fatorial de " + numero + " é " + resultado);
+        }
+
+    }
+
+    public static int leiorFatorialDois(Scanner myObj) {
+        System.out.println("Digite o valor de um número natural: ");
+        int numero = myObj.nextInt();
+        myObj.nextLine();
+
+        return numero;
+    }
+
+    public static long operadorFatorialDois(int numero) {
+        if (numero < 0) {
+            System.out.println("Erro: O fatorial não é definido para números negativos.");
+            return -1;
+        }
+
+        if (numero == 0) {
+            return 1;
+        }
+
+        long fatorial = 1;
+        for (int i = 1; i <= numero; i++) {
+            fatorial = fatorial * i;
+        }
+
+        return fatorial;
+    }
+
+    // Aplicação 10
+    public static void exibirMMC(Scanner myObj) {
+        // Exibe o resultado para o usuário
+        int[] valores = leitorMMC(myObj);
+        int a = valores[0];
+        int b = valores[1];
+
+        if (a == 0 || b == 0) {
+            System.out.println("O MMC de números que incluem zero é zero.");
+            return;
+        }
+
+        // Calcula o MDC usando o algoritmo de Euclides
+        int mdc = calculoMDC(a, b);
+
+        // Usa o MDC para calcualar o MMC
+        long mmc = operadorMMC(a, b, mdc);
+
+        // Exibe o resultado
+        System.out.println("O MMC de " + a + " e " + b + " é " + mmc);
+
+    }
+
+    public static int[] leitorMMC(Scanner myObj) {
+
+        System.out.println("Insira um número: ");
+        int a = myObj.nextInt();
+        System.out.println("Adicione outro número: ");
+        int b = myObj.nextInt();
+        myObj.nextLine();
+
+        return new int[] { a, b };
+    }
+
+    public static int calculoMDC(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return Math.abs(a);
+    }
+
+    public static long operadorMMC(int a, int b, int mdc) {
+        return (long) Math.abs(a) / mdc * Math.abs(b);
+    }
+
+    // Aplicação 11
+    public static void exibirMDC(Scanner myObj) {
+        // Exibe o resultado ao usuário
+        int[] valores = leitorMDC(myObj);
+        int a = valores[0];
+        int b = valores[1];
+
+        if (a == 0) {
+            System.out.println("Qualquer divisor inteiro de a é o zero absoluto.");
+        }
+
+        int mdc = operadorMDC(a, b);
+
+        // Exibe o resultado
+        System.out.println("O MDC de " + a + " e " + b + " é " + mdc);
+    }
+
+    public static int[] leitorMDC(Scanner myObj) {
+
+        System.out.println("Insira um número: ");
+        int a = myObj.nextInt();
+        System.out.println("Adicione outro número: ");
+        int b = myObj.nextInt();
+        myObj.nextLine();
+
+        return new int[] { a, b };
+    }
+
+    public static int operadorMDC(int a, int b) {
+        {
+            while (b != 0) {
+                int temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return Math.abs(a);
+        }
+
+    }
+
+    // Aplicação 12
+    public static void exibirFibonacci(Scanner myObj) {
+        // Exibe o resultado ao usuário
+        int valorTermo = leitorFibonacci(myObj);
+        int resultado = operadorFibonacci(valorTermo);
+
+        System.out.println("O " + valorTermo + "º termo de Fibonacci é: " + resultado);
+
+    }
+
+    public static int leitorFibonacci(Scanner myObj) {
+        System.out.println("Insira um valor inteiro para o termo: ");
+        int termo = myObj.nextInt();
+        myObj.nextLine();
+
+        return termo;
+    }
+
+    public static int operadorFibonacci(int termo) {
+        if (termo <= 1) {
+            return termo;
+        }
+        return operadorFibonacci(termo - 1) + operadorFibonacci(termo - 2);
+    }
+
+    // Aplicação 13
+    public static void exibirPA(Scanner myObj) {
+        // Exibe o resultado ao usuário
+        int[] valores = leitorPA(myObj);
+        int a1 = valores[0]; // Primeiro termo
+        int r = valores[1]; // Razão
+        int posicaoPA = valores[2]; // Posição
+
+        int resultado = operadorPA(a1, r, posicaoPA);
+
+        System.out.println("O termo da PA na posição " + posicaoPA + " é: " + resultado);
+
+    }
+
+    public static int[] leitorPA(Scanner myObj) {
+        System.out.println("Insira o primeiro termo da PA: ");
+        int primeiroTermo = myObj.nextInt();
+
+        System.out.println("Agora, insira a razão da PA: ");
+        int razaoPA = myObj.nextInt();
+
+        System.out.println("E por fim, insira a posição do termo que você quer encontrar: ");
+        int posicaoPA = myObj.nextInt();
+        myObj.nextLine();
+
+        return new int[] { primeiroTermo, razaoPA, posicaoPA };
+    }
+
+    public static int operadorPA(int primeiroTermo, int razao, int posicao) {
+        return primeiroTermo + (posicao - 1) * razao;
+    }
+
+    // Aplicação 14
+    public static void exibirPG(Scanner myObj) {
+        // Exibe o resultado ao usuário
+        int valores[] = leitorPG(myObj);
+        double a1 = valores[0]; // Primeiro Termo PG
+        double q = valores[1]; // Razão
+        int n = valores[2]; // Número de Termos
+
+        double resultado = operadorPG(a1, q, n);
+
+        System.out.println("A soma dos primeiros " + n + " termos da PG é: " + resultado);
+    }
+
+    public static int[] leitorPG(Scanner myObj) {
+        System.out.println("Insira o primeiro termo da PG: ");
+        int primeiroTermo = myObj.nextInt();
+
+        System.out.println("Agora, insira a razão da PG: ");
+        int razaoPG = myObj.nextInt();
+
+        System.out.println("E por fim, insira o número de termos da sua PG: ");
+        int numTermos = myObj.nextInt();
+        myObj.nextLine();
+
+        return new int[] { primeiroTermo, razaoPG, numTermos };
+    }
+
+    public static double operadorPG(double a1, double q, int n) {
+        if (q == 1) {
+            return n * a1;
+        }
+
+        return a1 * (Math.pow(q, n) - 1) / (q - 1);
+    }
+
+    // Aplicação 15
+    public static void exibirTabuada(Scanner myObj) {
+        // Exibe o resultado ao usuário
+        int valor = leitorTabuada(myObj);
+        operadorTabuada(valor);
+    }
+
+    public static int leitorTabuada(Scanner myObj) {
+        System.out.println("Insira um valor inteiro de 1 a 10 para ver a tabuada: ");
+        int valor = myObj.nextInt();
+        myObj.nextLine();
+
+        return valor;
+    }
+
+    public static void operadorTabuada(int n) {
+        if (n >= 1 && n <= 10) {
+            System.out.println("--- Tabuada do " + n + " ---");
+
+            for (int i = 1; i <= 10; i++) {
+                int resultado = n * i;
+                System.out.println(n + " x " + i + " = " + resultado);
+            }
+        } else {
+            System.out.println("Número inválido. Insira um valor entre 1 a 10");
+        }
+
+    }
+
+    // Aplicação 16
+    public static void exibirNumeroPerfeito(Scanner myObj) {
+        // Exibe o resultado ao usuário
+        int valor = leitorNumeroPerfeito(myObj);
+        boolean ehPerfeito = operadorNumeroPerfeito(valor);
+
+        if (ehPerfeito) {
+            System.out.println(valor + " é um número perfeito.");
+        } else {
+            System.out.println(valor + " não é um número perfeito.");
+        }
+
+    }
+
+    public static int leitorNumeroPerfeito(Scanner myObj) {
+        System.out.println("Insira um número inteiro e verifique se é perfeito: ");
+        int numero = myObj.nextInt();
+        myObj.nextLine();
+
+        return numero;
+    }
+
+    public static boolean operadorNumeroPerfeito(int n) {
+        if (n <= 1) {
+            return false;
+        }
+
+        int somaDivisores = 1;
+
+        for (int i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
+                somaDivisores += i;
+            }
+        }
+
+        return somaDivisores == n;
+    }
+}
