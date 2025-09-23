@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <label for="valor1">Nome (1° bimestre)</label>
+    <input type="text" id="primeiroBimestre">
+    <br><br>
+    <label for="valor2">Nome (2° bimestre)</label>
+    <input type="text" id="segundoBimestre">
+    <br><br>
+    <button onclick="calcularNota()">Resultado</button>
+    <br><br>
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        function calcularNota() {
+            var nota1 = document.getElementById("primeiroBimestre").value;
+            var nota2 = document.getElementById("segundoBimestre").value;
+
+            // Converte os valores para os números usando o operador '+'
+            var nota1Numero = +nota1;
+            var nota2Numero = +nota2;
+
+            if (nota1Numero > 50 || nota2Numero > 50 || nota1Numero < 0 || nota2Numero < 0) {
+                alert("O limite de cada bimestre é 50, e não existem notas menores que zero. Por favor, digite um valor válido.");
+                return;
+            }
+
+            var notaFinal = nota1Numero + nota2Numero;
+
+             if (notaFinal >= 60) {
+                alert("Aprovado! Nota final: " + notaFinal);
+            } else {
+                var pontosFaltantes = 60 - notaFinal;
+                alert("Reprovado! Nota final: " + notaFinal + ". Faltaram " + pontosFaltantes + " pontos para a aprovação.");
+            }
+        }
+    </script>
+</body>
+
+</html>

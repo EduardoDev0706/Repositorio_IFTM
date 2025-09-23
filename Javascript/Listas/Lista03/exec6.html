@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <h2>Calculadora</h2>
+    <label for="text">1° Valor</label>
+    <input type="text" id="valor1">
+    <br><br>
+    <label for="text">2° Valor</label>
+    <input type="text" id="valor2">
+    <br><br>
+    <button onclick="exibirSoma()">+</button>
+    <button onclick="exibirSubtracao()">-</button>
+    <button onclick="exibirMultiplicacao()">*</button>
+    <button onclick="exibirDivisao()">/</button>
+    <br><br>
+    <label for="resultado">Resultado:</label>
+    <input type="text" id="resultado">
+    <br><br>
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        function validarValores() {
+            var valor1 = document.getElementById("valor1").value;
+            var valor2 = document.getElementById("valor2").value;
+
+            // [inference] A verificação '!=' garante que as strings não estão vazias
+            if (valor1 != "" && valor2 != "") {
+                var valor1Numero = parseFloat(valor1);
+                var valor2Numero = parseFloat(valor2);
+
+                // [inference] A verificação 'isNAN' garante que as strings são números válidos.
+                if (isNaN(valor1Numero) || isNaN(valor2Numero)) {
+                    alert("Por favor, insira apenas números.");
+                    return null;
+                }
+
+                return { num1: valor1Numero, num2: valor2Numero };
+            } else {
+                alert("Por favor, preencha os dois valores.");
+                return null;
+            }
+        }
+
+        function exibirSoma() {
+            var valores = validarValores();
+            if (valores) {
+                var resultado = valores.num1 + valores.num2;
+                document.getElementById("resultado").value = resultado;
+            }
+        }
+
+        function exibirSubtracao() {
+            var valores = validarValores();
+            if (valores) {
+                var resultado = valores.num1 - valores.num2;
+                document.getElementById("resultado").value = resultado;
+            }
+        }
+
+        function exibirMultiplicacao() {
+            var valores = validarValores();
+            if (valores) {
+                var resultado = valores.num1 * valores.num2;
+                document.getElementById("resultado").value = resultado;
+            }
+        }
+
+        function exibirDivisao() {
+            var valores = validarValores();
+            if (valores) {
+                if (valores.num2 == 0) {
+                    alert("Não é possivel dividir por zero.")
+                    document.getElementById("resultado").value = "";
+                } else {
+                    var resultado = valores.num1 / valores.num2;
+                    document.getElementById("resultado").value = resultado;
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

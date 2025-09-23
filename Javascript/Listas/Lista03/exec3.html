@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <label for="valor">Digite um valor:</label>
+    <input type="text" id="valor">
+    <button onclick="dobrarValor()">Mostrar o dobro</button>
+    <br><br>
+    <label for="dobro">Dobro do valor:</label>
+    <input type="text" id="dobro" readonly>
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script>
+        function dobrarValor()
+        {
+            var valor = document.getElementById("valor").value;
+
+            // Converte o valor para um número. O operador '+' antes da variável é responsável por isso.
+            var numero = +valor;
+
+            // Calcula o dobro
+            var resultado = numero * 2;
+
+            // Exibe o resultado no segundo campo de texto
+            document.getElementById("dobro").value = resultado;
+        }
+    </script>
+</body>
+</html>
