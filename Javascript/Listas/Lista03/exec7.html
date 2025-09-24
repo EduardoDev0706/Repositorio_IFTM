@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso ao Sistema</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Acesso ao Sistema</h1>
+        <form id="formAcesso">
+            <table>
+                <tr>
+                    <td>Login</td>
+                    <td><input type="text" id="login"></td>
+                </tr>
+                <tr>
+                    <td>Senha</td>
+                    <td>
+                        <input type="password" id="senha" maxlength="8">
+                        <span class="info-caracteres">(max. 8 caracteres)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Confirmar senha</td>
+                    <td>
+                        <input type="password" id="confirmarSenha" maxlength="8">
+                        <span class="info-caracteres">(max. 8 caracteres)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="buttons-cell">
+                        <button type="button" id="btnEntrar">Entrar</button>
+                        <button type="button" id="btnLimpar">Limpar</button>
+                    </td>
+                </tr>
+            </table>
+            <div id="mensagem"></div>
+        </form>
+    </div>
+
+    <p class="fig-label">FIG 1 - Interface para permitir o controle de acesso ao sistema</p>
+
+    <a href="main.html">Clique aqui para voltar</a>
+
+    <script src="script.js"></script>
+</body>
+</html>
