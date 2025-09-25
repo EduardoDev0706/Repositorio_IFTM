@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eleição Presidencial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="candidato">
+            <h2 id="candidatoSorteado">Candidato 1</h2>
+            <p id="partidoCandidato">Partido</p>
+            <img id="imgCandidato" alt="">
+        </div>
+
+        <div class="candidato">
+            <h2 id="candidatoSorteado2">Candidato 2</h2>
+            <p id="partidoCandidato2">Partido</p>
+            <img id="imgCandidato2" alt="">
+        </div>
+    </div>
+
+    <div class="vencedor-container">
+        <p>Vencedor:</p>
+        <p id="vencedor-nome"></p>
+    </div>
+
+    <div class="porcentagens-container">
+        <h3>Porcentagem de Votos</h3>
+        <ul id="lista-porcentagens"></ul>
+    </div>
+
+    <button onclick="sortearCandidatos()">Gerar Resultado</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

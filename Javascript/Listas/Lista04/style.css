@@ -1,0 +1,63 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    gap: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+}
+
+.candidato {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 200px;
+}
+
+.candidato img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.vencedor-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.vencedor-nome {
+    font-size: 2em;
+    font-weight: bold;
+    color: green;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+}
+
+.porcentagens-container {
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 500px;
+}
