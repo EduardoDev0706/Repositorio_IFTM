@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personagem Interativo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #personagem {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #mensagem {
+            margin-top: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <img id="personagem" src="imagens/ex01/Pensativo.png" alt="">
+        <p id="mensagem">Zzzzzzzzzz!</p>
+    </div>
+
+    <script>
+        const personagem = document.getElementById('personagem');
+        const mensagem = document.getElementById('mensagem');
+
+        // Funções para alterar o estado do personagem
+
+        // Pensativo (Padrão)
+        function setPensativo() {
+            personagem.src = 'imagens/ex01/Pensativo.png';
+            mensagem.textContent = 'Zzzzzzzzz';
+        }
+
+        // Assustado
+        function setAssustado() {
+            personagem.src = 'imagens/ex01/Assustado.png';
+            mensagem.textContent = 'O que você quer?';
+        }
+
+        // Nervoso
+        function setNervoso() {
+            personagem.src = 'imagens/ex01/Nervoso.png';
+            mensagem.textContent = 'Não me faça perder o meu tempo!';
+        }
+
+        // Alegre
+        function setAlegre(nome) {
+            personagem.src = 'imagens/ex01/alegre.png';
+            mensagem.textContent = `${nome}, seja bem-vindo!`;
+        }
+
+        // ** Lógica dos Event Listeners **
+
+        // 1. Ao posicionar o mouse (Mouseover)
+        personagem.addEventListener('mouseover', setAssustado);
+
+        // 2. Ao remover o mouse (Mouseout) - Sempre volta para Pensativo
+        personagem.addEventListener('mouseout', setPensativo);
+
+        // 3. Ao clicar (Click)
+        personagem.addEventListener('click', () => {
+            const nomeInformado = prompt('Por favor, informe o seu nome:');
+
+            personagem.removeEventListener('mouseover', setAssustado);
+            personagem.removeEventListener('mouseout', setPensativo);
+
+            if (nomeInformado === null || nomeInformado.trim() === "") {
+                setNervoso();
+
+                // Mantém o estado Nervoso por um breve período antes de voltar a interagir 
+                setTimeout(() => {
+                    setPensativo(); 
+                    personagem.addEventListener('mouseover', setAssustado);
+                    personagem.addEventListener('mouseout', setPensativo);
+                }, 2000); 
+
+            } else {
+                setAlegre(nomeInformado.trim());
+
+                // Mantém o estado Alegre por um breve período antes de voltar a interagir 
+                setTimeout(() => {
+                    setPensativo(); 
+                    personagem.addEventListener('mouseover', setAssustado);
+                    personagem.addEventListener('mouseout', setPensativo);
+                }, 3000); 
+            }
+
+        });
+
+        window.onload = setPensativo;
+    </script>
+</body>
+
+</html>
