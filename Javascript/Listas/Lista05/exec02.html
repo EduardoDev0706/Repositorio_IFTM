@@ -5,63 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisa de Intenção de Votos</title>
     <style>
-        /* Estilos Globais e Centralização */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            /* Garante que o painel principal (#painel-geral) seja centralizado horizontalmente */
             display: flex;
             justify-content: center;
-            min-height: 100vh; /* Para garantir que o body ocupe toda a altura */
-            background-color: #f0f0f0; /* Cor de fundo suave [Inference] */
+            min-height: 100vh; 
+            background-color: #f0f0f0;
         }
 
-        /* Painel Geral (Contém todos os candidatos) */
         #painel-geral {
             display: flex;
-            gap: 20px; /* Espaçamento entre os cartões [Inference] */
+            gap: 20px; 
             padding: 20px;
-            margin-top: 50px; /* Margem superior para centralizar ligeiramente abaixo do topo [Inference] */
+            margin-top: 50px;
         }
 
-        /* Estilo para a Caixa de cada Candidato */
+       
         .candidato-caixa {
-            width: 200px; /* Largura fixa do cartão [Inference] */
+            width: 200px; 
             padding: 10px;
             text-align: center;
             border: 1px solid #ccc;
-            border-radius: 5px; /* Bordas arredondadas [Inference] */
+            border-radius: 5px; 
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s; /* Transição suave [Inference] */
-            
-            /* Cor de fundo padrão (verde claro conforme a imagem) */
+            transition: background-color 0.3s, transform 0.1s; 
             background-color: #e6ffe6; 
         }
 
-        /* Título do Candidato (CANDIDATO X) */
         .candidato-titulo {
             font-weight: bold;
             color: red;
             margin-bottom: 5px;
         }
 
-        /* Nome do Candidato */
         .candidato-nome {
             font-weight: bold;
             font-size: 1.1em;
             margin: 5px 0;
         }
 
-        /* Imagem do Candidato */
         .candidato-imagem {
-            width: 100%; /* Ocupa 100% da largura da caixa */
+            width: 100%; 
             height: auto;
-            display: block; /* Remove o espaço extra abaixo da imagem [Inference] */
+            display: block; 
             margin-bottom: 10px;
         }
 
-        /* Contador de Votos */
         .candidato-votos {
             font-weight: bold;
             margin-top: 10px;
@@ -69,17 +60,14 @@
             border-top: 1px solid #ccc;
         }
 
-        /* Requisito: Alterar cor de fundo ao passar o mouse */
         .candidato-caixa:hover {
-            background-color: #d1ffd1; /* Um verde ligeiramente mais escuro [Inference] */
+            background-color: #d1ffd1; 
         }
         
-        /* DESAFIO EXTRA: Cor de destaque para o(s) líder(es) */
         .lider {
-            /* Um verde mais vibrante ou totalmente diferente [Inference] */
             background-color: #a3f7a3 !important; 
             border-color: #008000;
-            box-shadow: 0 0 10px rgba(0, 128, 0, 0.5); /* Sombra para destaque [Inference] */
+            box-shadow: 0 0 10px rgba(0, 128, 0, 0.5); 
         }
     </style>
 </head>
@@ -90,7 +78,7 @@
         <div class="candidato-caixa" data-id="1">
             <div class="candidato-titulo">CANDIDATO 1</div>
             <div class="candidato-nome">Mickey</div>
-            <img class="candidato-imagem" src="Imagens/Mickey.png" alt="Mickey">
+            <img class="candidato-imagem" src="imagens/ex02/candidato1.jpg" alt="Mickey">
             <div class="candidato-votos">
                 Número de votos: <span id="votos-1" class="contador-votos" data-votos="2">2</span>
             </div>
@@ -99,7 +87,7 @@
         <div class="candidato-caixa" data-id="2">
             <div class="candidato-titulo">CANDIDATO 2</div>
             <div class="candidato-nome">Minnie</div>
-            <img class="candidato-imagem" src="Imagens/Minnie.png" alt="Minnie">
+            <img class="candidato-imagem" src="imagens/ex02/candidato2.jpg" alt="Minnie">
             <div class="candidato-votos">
                 Número de votos: <span id="votos-2" class="contador-votos" data-votos="1">1</span>
             </div>
@@ -108,7 +96,7 @@
         <div class="candidato-caixa" data-id="3">
             <div class="candidato-titulo">CANDIDATO 3</div>
             <div class="candidato-nome">Pluto</div>
-            <img class="candidato-imagem" src="Imagens/Pluto.png" alt="Pluto">
+            <img class="candidato-imagem" src="imagens/ex02/candidato3.jpg" alt="Pluto">
             <div class="candidato-votos">
                 Número de votos: <span id="votos-3" class="contador-votos" data-votos="5">5</span>
             </div>
@@ -117,24 +105,21 @@
         <div class="candidato-caixa" data-id="4">
             <div class="candidato-titulo">CANDIDATO 4</div>
             <div class="candidato-nome">Pateta</div>
-            <img class="candidato-imagem" src="Imagens/Pateta.png" alt="Pateta">
+            <img class="candidato-imagem" src="imagens/ex02/candidato4.jpg" alt="Pateta">
             <div class="candidato-votos">
                 Número de votos: <span id="votos-4" class="contador-votos" data-votos="4">4</span>
             </div>
         </div>
     </div>
+    
 
     <script>
-        // Obtém todos os cartões de candidatos
         const caixasCandidato = document.querySelectorAll('.candidato-caixa');
-        // Obtém todos os elementos que exibem a contagem de votos
         const contadoresVotos = document.querySelectorAll('.contador-votos');
 
-        // Função para encontrar o maior número de votos
         function encontrarVotoMaximo() {
             let maxVotos = -1;
             contadoresVotos.forEach(contador => {
-                // Obtém o valor atual dos votos
                 const votosAtuais = parseInt(contador.textContent);
                 if (votosAtuais > maxVotos) {
                     maxVotos = votosAtuais;
@@ -142,17 +127,13 @@
             });
             return maxVotos;
         }
-
-        // Função do DESAFIO EXTRA: Destaca o(s) candidato(s) líder(es)
         function destacarLideres() {
             const maxVotos = encontrarVotoMaximo();
             
-            // 1. Remove a classe 'lider' de todos
             caixasCandidato.forEach(caixa => {
                 caixa.classList.remove('lider');
             });
 
-            // 2. Adiciona a classe 'lider' àqueles que têm o voto máximo
             caixasCandidato.forEach(caixa => {
                 const id = caixa.getAttribute('data-id');
                 const contador = document.getElementById(`votos-${id}`);
@@ -164,23 +145,18 @@
             });
         }
         
-        // Inicializa a página, destacando os líderes com os votos iniciais
         document.addEventListener('DOMContentLoaded', destacarLideres);
         
         // Adiciona o evento de clique a cada caixa de candidato
         caixasCandidato.forEach(caixa => {
             caixa.addEventListener('click', (event) => {
-                // Obtém o ID do candidato a partir do atributo data-id
                 const idCandidato = caixa.getAttribute('data-id');
-                // Encontra o elemento <span> que exibe a contagem de votos
                 const contador = document.getElementById(`votos-${idCandidato}`);
                 
-                // Requisito: Incrementa o número de votos
                 let votosAtuais = parseInt(contador.textContent);
                 votosAtuais++;
                 contador.textContent = votosAtuais; // Atualiza a exibição no HTML
                 
-                // DESAFIO EXTRA: Verifica e atualiza o destaque do líder a cada voto
                 destacarLideres();
             });
         });
