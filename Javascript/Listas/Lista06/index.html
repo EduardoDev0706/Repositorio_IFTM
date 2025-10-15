@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Jogo da Memória</h1>
+
+    <div id="controles">
+        <label for="nivelDificuldade">Nível de Dificuldade:</label>
+        <select id="nivelDificuldade">
+            <option value="4">FÁCIL (4 PARES)</option>
+            <option value="8">MÉDIO (8 PARES)</option>
+            <option value="12">DIFÍCIL (12 PARES)</option>
+        </select>
+        <button id="btnIniciar">Iniciar Jogo</button>
+    </div>
+
+    <div id="placar" style="margin-top: 15px;">
+        <p>Tentativas: <span id="numTentativas">0</span></p>
+        <p>Acertos: <span id="numAcertos">0</span></p>
+        <p>Aproveitamento: <span id="aproveitamento">0.00%</span></p>
+    </div>
+
+    <div id="tabuleiro">
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

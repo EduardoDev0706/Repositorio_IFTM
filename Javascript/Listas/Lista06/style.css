@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#tabuleiro {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 1000px;
+}
+
+.carta {
+    /* Dimensões baseadas na proporção (104x162) */
+    width: 104px;
+    height: 162px;
+
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    background-color: #555;
+
+    background-image: url('img/verso.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.carta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.carta.revelada img {
+    opacity: 1;
+}
+
+.carta.revelada {
+    background-image: none;
+}
