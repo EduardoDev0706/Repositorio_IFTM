@@ -1,3 +1,4 @@
+package Etapa1;
 public class Retas {
     // Atributos privados
     private double x1;
