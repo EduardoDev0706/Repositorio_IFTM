@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer class="py-4 border-top mt-auto" th:fragment="footer">
+  <div class="container d-flex justify-content-between small text-muted">
+    <span>&copy; <span th:text="${#dates.format(#dates.createNow(),'yyyy')}"></span> Torresmo Delivery</span>
+    <span>Feito com Spring MVC + Thymeleaf</span>
+  </div>
+</footer>
+</body>
+</html>

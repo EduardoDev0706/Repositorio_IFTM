@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout (~{::body})}">
+<body>
+<div th:fragment="content" class="row">
+  <div class="col-md-6">
+    <img th:if="${produto.imagemUrl}" th:src="${produto.imagemUrl}" class="img-fluid rounded" alt="Produto"/>
+  </div>
+  <div class="col-md-6">
+    <h1 th:text="${produto.nome}">Produto</h1>
+    <p class="lead" th:text="${produto.descricao}">Descrição…</p>
+    <p class="fs-4 fw-bold" th:text="${#numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</p>
+
+    <form class="d-flex align-items-center gap-2" th:action="@{/carrinho/adicionar}" method="post">
+      <input type="hidden" name="produtoId" th:value="${produto.id}"/>
+      <label class="form-label mb-0" for="qtd">Qtd.</label>
+      <input id="qtd" class="form-control" type="number" name="quantidade" min="1" value="1" style="max-width:120px"/>
+      <button type="submit" class="btn btn-danger">Adicionar ao carrinho</button>
+    </form>
+
+    <a class="btn btn-link mt-3" th:href="@{/}">← Voltar</a>
+  </div>
+</div>
+</body>
+</html>

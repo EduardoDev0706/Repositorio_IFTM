@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout :: layout('Home - Torresmo Delivery', ~{::content})}">
+  <body>
+    <div th:fragment="content">
+      <div class="bg-danger text-white rounded-3 p-5 mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1 class="display-4 fw-bold mb-3">🍖 Torresmo Delivery</h1>
+            <p class="lead mb-4">
+              O melhor torresmo da cidade, crocante e saboroso, entregue quentinho na sua casa!
+            </p>
+            <div class="d-flex gap-3">
+              <a th:href="@{/produtos}" class="btn btn-light btn-lg">Ver Cardápio</a>
+              <a th:href="@{/pedido/acompanhar}" class="btn btn-outline-light btn-lg">
+                Acompanhar Pedido
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center d-none d-md-block">
+            <div class="display-1">🍖</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <h2 class="mb-4">✨ Por que escolher o Torresmo Delivery?</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center p-4">
+                <div class="display-4 mb-3">🔥</div>
+                <h5 class="card-title">Sempre Fresquinho</h5>
+                <p class="card-text text-muted">
+                  Preparamos seu torresmo na hora para garantir máxima crocância
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center p-4">
+                <div class="display-4 mb-3">🚀</div>
+                <h5 class="card-title">Entrega Rápida</h5>
+                <p class="card-text text-muted">Entregamos em até 30 minutos para sua região</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center p-4">
+                <div class="display-4 mb-3">⭐</div>
+                <h5 class="card-title">Qualidade Garantida</h5>
+                <p class="card-text text-muted">Selecionamos apenas os melhores ingredientes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-5">
+        <h2 class="mb-4">🛒 Produtos em Destaque</h2>
+        
+        <div th:if="${#lists.isEmpty(produtos)}" class="alert alert-info text-center">
+            Nenhum produto em destaque no momento. Veja o <a th:href="@{/produtos}">cardápio completo</a>!
+        </div>
+        
+        <div th:if="${!#lists.isEmpty(produtos)}" class="row g-4">
+          <div th:each="produto : ${produtos}" class="col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm border-danger">
+              
+              <div class="card-header bg-danger text-white text-center fw-bold p-1">
+                🔥 OFERTA DA HORA!
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title" th:text="${produto.nome}">Torresmo Tradicional</h5>
+                <p class="card-text text-muted small" th:text="${produto.descricao}">
+                  Corte especial, pururucado e saboroso, pronto para o seu pedido.
+                </p>
+                <p class="text-secondary small mb-1">Tamanho: <span th:text="${produto.tamanho}">P</span></p>
+                
+                <h4 class="text-danger fw-bold mt-2" 
+                    th:text="${#numbers.formatCurrency(produto.preco)}">
+                    R$ 25,00
+                </h4>
+              </div>
+              
+              <div class="card-footer bg-white border-0 text-end">
+                  <a href="#" class="btn btn-sm btn-outline-danger">Adicionar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-5">
+        <h2 class="mb-4">📋 Como Fazer seu Pedido</h2>
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="text-center">
+              <div
+                class="rounded-circle bg-danger text-white d-inline-flex align-items-center justify-content-center mb-3"
+                style="width: 60px; height: 60px">
+                <span class="h4 mb-0">1</span>
+              </div>
+              <h5>Escolha</h5>
+              <p class="text-muted small">Navegue pelo cardápio e escolha seus favoritos</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <div
+                class="rounded-circle bg-danger text-white d-inline-flex align-items-center justify-content-center mb-3"
+                style="width: 60px; height: 60px">
+                <span class="h4 mb-0">2</span>
+              </div>
+              <h5>Adicione</h5>
+              <p class="text-muted small">Adicione os produtos ao carrinho</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <div
+                class="rounded-circle bg-danger text-white d-inline-flex align-items-center justify-content-center mb-3"
+                style="width: 60px; height: 60px">
+                <span class="h4 mb-0">3</span>
+              </div>
+              <h5>Finalize</h5>
+              <p class="text-muted small">Complete seu pedido e escolha a forma de pagamento</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <div
+                class="rounded-circle bg-danger text-white d-inline-flex align-items-center justify-content-center mb-3"
+                style="width: 60px; height: 60px">
+                <span class="h4 mb-0">4</span>
+              </div>
+              <h5>Receba</h5>
+              <p class="text-muted small">Aguarde a entrega quentinha na sua casa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-light rounded-3 p-5 text-center">
+        <h3 class="mb-3">Ficou com água na boca? 🤤</h3>
+        <p class="lead text-muted mb-4">Faça seu pedido agora e receba em até 30 minutos!</p>
+        <a th:href="@{/produtos}" class="btn btn-danger btn-lg">Ver Cardápio Completo</a>
+      </div>
+    </div>
+  </body>
+</html>

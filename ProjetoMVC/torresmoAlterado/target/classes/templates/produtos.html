@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout :: layout('Produtos', ~{::content})}">
+  <body>
+    <div th:fragment="content">
+      <h1>Produtos</h1>
+
+      <div class="table-responsive mt-4">
+        <table class="table table-striped table-hover">
+          <thead class="table-danger">
+            <tr>
+              <th>Nome do Produto</th>
+              <th>Descrição</th>
+              <th class="text-end">Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="produto : ${produtos}">
+              <td th:text="${produto.nome}">Nome</td>
+              <td th:text="${produto.descricao}">Descrição</td>
+              <td class="text-end">
+                R$
+                <span th:text="${#numbers.formatDecimal(produto.preco, 1, 2)}">0,00</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

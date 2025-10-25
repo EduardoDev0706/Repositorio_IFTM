@@ -1,0 +1,43 @@
+erDiagram
+  CLIENTE ||--o{ PEDIDO : "faz"
+  PEDIDO ||--|{ ITEM_PEDIDO : "possui"
+  PRODUTO ||--|{ ITEM_PEDIDO : "compõe"
+  PEDIDO ||--|| PAGAMENTO : "tem"
+  PEDIDO ||--|| ENTREGA : "tem"
+
+  CLIENTE {
+    BIGSERIAL id_cliente PK
+    VARCHAR   nome
+    VARCHAR   telefone
+    VARCHAR   email
+    VARCHAR   logradouro
+    VARCHAR   numero
+    VARCHAR   bairro
+    VARCHAR   cidade
+    VARCHAR   complemento
+    VARCHAR   cep
+    ENUM      forma_pagto_preferida
+  }
+  PRODUTO {
+    BIGSERIAL id_produto PK
+    VARCHAR   nome
+    TEXT      descricao
+    NUMERIC   preco
+    VARCHAR   tamanho
+    BOOLEAN   disponivel
+  }
+  PEDIDO {
+    BIGSERIAL id_pedido PK
+    BIGINT    cliente_id FK
+    TIMESTAMP data_hora
+    ENUM      status
+    NUMERIC   taxa_entrega
+    NUMERIC   valor_total
+  }
+  ITEM_PEDIDO {
+    BIGINT  id_pedido  PK, FK
+    BIGINT  id_produto PK, FK
+    INTEGER quantidade
+    NUMERIC preco_unitario
+    NUMERIC subtotal
+  }
