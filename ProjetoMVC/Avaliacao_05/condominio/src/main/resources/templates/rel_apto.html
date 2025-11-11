@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Apartamentos</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <nav class="menu">
+        <ul>
+            <li><a th:href="@{/rel-prop}">Gestão de Proprietários</a></li>
+            <li><a th:href="@{/rel-apto}">Gestão de Apartamentos</a></li>
+        </ul>
+    </nav>
+
+    <h1>Gestão de Apartamentos</h1>
+
+    <div th:if="${mensagemSucesso}" style="color: green;">
+        <p th:text="${mensagemSucesso}"></p>
+    </div>
+
+    <form th:action="@{/cad-apto}" method="POST" th:object="${apartamento}">
+        <h2>Cadastrar Novo Apartamento</h2>
+
+        <div>
+            <label for="numeroPorta">Número da Porta:</label>
+            <input type="number" id="numeroPorta" th:field="*{numeroPorta}">
+            <div class="error" th:if="${#fields.hasErrors('numeroPorta')}" th:errors="*{numeroPorta}"></div>
+        </div>
+
+        <div>
+            <label for="quantidadeQuartos">Quantidade de Quartos:</label>
+            <input type="number" id="quantidadeQuartos" th:field="*{quantidadeQuartos}">
+            <div class="error" th:if="${#fields.hasErrors('quantidadeQuartos')}" th:errors="*{quantidadeQuartos}"></div>
+        </div>
+        
+        <div>
+            <label for="tipoOcupacao">Tipo de Ocupação:</label>
+            <select id="tipoOcupacao" th:field="*{tipoOcupacao}">
+                <option value="">Selecione...</option>
+                <option value="Proprietário">Proprietário</option>
+                <option value="Inquilino">Inquilino</option>
+                <option value="Vazio">Vazio</option>
+            </select>
+            <div class="error" th:if="${#fields.hasErrors('tipoOcupacao')}" th:errors="*{tipoOcupacao}"></div>
+        </div>
+
+        <div>
+            <label for="proprietario">Proprietário:</label>
+            <select id="proprietario" th:field="*{proprietario}">
+                <option value="">Selecione um proprietário...</option>
+                <option th:each="prop : ${proprietarios}"
+                        th:value="${prop.id}"
+                        th:text="${prop.nome}">
+                    Nome do Proprietário
+                </option>
+            </select>
+            <div class="error" th:if="${#fields.hasErrors('proprietario')}" th:errors="*{proprietario}"></div>
+        </div>
+
+        <button type="submit">Salvar Apartamento</button>
+    </form>
+
+    <hr style="margin: 2em 0;">
+
+    <h2>Relatório de Apartamentos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Núm. Porta</th>
+                <th>Quartos</th>
+                <th>Ocupação</th>
+                <th>Proprietário (ID)</th>
+                <th>Proprietário (Nome)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="apto : ${apartamentos}">
+                <td th:text="${apto.id}">1</td>
+                <td th:text="${apto.numeroPorta}">101</td>
+                <td th:text="${apto.quantidadeQuartos}">2</td>
+                <td th:text="${apto.tipoOcupacao}">Inquilino</td>
+                <td th:text="${apto.proprietario.id}">1</td>
+                <td th:text="${apto.proprietario.nome}">Nome do Proprietário</td>
+            </tr>
+            <tr th:if="${apartamentos.isEmpty()}">
+                <td colspan="6">Nenhum apartamento cadastrado.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

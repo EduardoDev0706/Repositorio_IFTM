@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Proprietários</title>
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    
+</head>
+<body>
+
+    <nav class="menu">
+        <ul>
+            <li><a th:href="@{/rel-prop}">Gestão de Proprietários</a></li>
+            <li><a th:href="@{/rel-apto}">Gestão de Apartamentos</a></li>
+        </ul>
+    </nav>
+
+    <h1>Gestão de Proprietários</h1>
+
+    <div th:if="${mensagemSucesso}" style="color: green;">
+        <p th:text="${mensagemSucesso}"></p>
+    </div>
+
+    <form th:action="@{/cad-prop}" method="POST" th:object="${proprietario}">
+        <h2>Cadastrar Novo Proprietário</h2>
+
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" placeholder="Nome do Proprietário">
+            
+            <div class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+        </div>
+
+        <div>
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" th:field="*{telefone}" placeholder="(XX) XXXXX-XXXX">
+            <div class="error" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
+        </div>
+
+        <button type="submit">Salvar Proprietário</button>
+    </form>
+
+    <hr style="margin: 2em 0;">
+
+    <h2>Relatório de Proprietários</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prop : ${proprietarios}">
+                <td th:text="${prop.id}">1</td>
+                <td th:text="${prop.nome}">Nome do Proprietário</td>
+                <td th:text="${prop.telefone}">(00) 00000-0000</td>
+            </tr>
+            <tr th:if="${proprietarios.isEmpty()}">
+                <td colspan="3">Nenhum proprietário cadastrado.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
