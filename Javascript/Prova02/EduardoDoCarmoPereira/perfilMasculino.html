@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova 02 - Eduardo do Carmo</title>
+</head>
+<body>
+    
+    <button id="btnMario">Mario</button>        
+    <button id="btnLuigi">Luigi</button>
+    <br><br>
+    ️<img id="personagem" src="img/mario.gif" alt="" width="200">
+    <br>
+    <p>Pontuação do Mario: </p>
+    <p>Pontuação do Luigi: </p>
+    
+    <script>
+        // Lógica para trocar o personagem exibido (botões Mario e Luigi)
+        document.getElementById('btnMario').addEventListener('click', () => {
+            document.getElementById('personagem').src = 'img/mario.gif';
+        });
+        document.getElementById('btnLuigi').addEventListener('click', () => {
+            document.getElementById('personagem').src = 'img/luigi.gif';
+        }); 
+
+        // Lógica que aumenta a pontuação de cada personagem
+        let pontuacaoMario = 0;
+        let pontuacaoLuigi = 0;
+
+        document.getElementById('personagem').addEventListener('click', () => {
+            const personagemAtual = document.getElementById('personagem').src;
+            if (personagemAtual.includes('mario.gif')) {
+                pontuacaoMario++;
+                document.querySelector('p:nth-of-type(1)').textContent = `Pontuação do Mario: ${pontuacaoMario}`;
+            } else if (personagemAtual.includes('luigi.gif')) {
+                pontuacaoLuigi++;
+                document.querySelector('p:nth-of-type(2)').textContent = `Pontuação do Luigi: ${pontuacaoLuigi}`;
+            }
+        });
+    </script>
+</body>
+</html>

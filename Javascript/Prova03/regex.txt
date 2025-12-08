@@ -1,0 +1,492 @@
+# 📘 Guia Definitivo: Regex e DOM em JavaScript
+
+Este documento serve como consulta rápida para provas, cobrindo sintaxe de Regex, métodos principais e manipulação do DOM.
+
+---
+
+## 1. Criando Expressões Regulares
+
+### Sintaxe Literal (Recomendada)
+Usada quando o padrão é fixo.
+```javascript
+const regex = /padrao/flags;
+
+Sintaxe Construtor
+
+Usada quando o padrão vem de uma variável (dinâmico).
+JavaScript
+
+const regex = new RegExp("padrao", "flags");
+
+Flags (Modificadores)
+Flag	Nome	Efeito
+g	Global	Busca todas as ocorrências (não para na primeira).
+i	Case Insensitive	Ignora maiúsculas/minúsculas.
+m	Multiline	^ e $ funcionam linha a linha.
+2. Cheat Sheet de Sintaxe
+Classes de Caracteres
+Símbolo	Seleciona
+.	Qualquer caractere (exceto quebra de linha).
+\d	Qualquer dígito [0-9].
+\D	Qualquer NÃO dígito.
+\w	Alfanumérico [A-Za-z0-9_].
+\W	Não alfanumérico (símbolos, espaços).
+\s	Espaço em branco (tab, espaço, enter).
+[abc]	Lista: apenas a, b ou c.
+[^abc]	Negação: tudo EXCETO a, b ou c.
+Quantificadores
+Símbolo	Quantidade	Descrição
+*	0 ou mais	Opcional, repetível.
++	1 ou mais	Obrigatório.
+?	0 ou 1	Opcional (existe ou não).
+{n}	Exatamente n	Ex: \d{3} (3 dígitos).
+{n,}	n ou mais	Ex: \d{5,} (5 ou mais).
+{n,m}	De n até m	Ex: \d{2,4} (entre 2 e 4).
+Âncoras e Lógica
+Símbolo	Função
+^	Início da string.
+$	Fim da string.
+`	`
+( )	Grupo de captura.
+\	Escape (ex: \. para buscar um ponto real).
+3. Métodos Essenciais (JavaScript)
+No Objeto RegExp
+
+    regex.test(string) 🌟 Essencial para Validação
+
+        Retorna true ou false.
+
+        Uso: Validação dentro de if/else.
+
+    regex.exec(string)
+
+        Retorna Array com detalhes da captura ou null.
+
+No Objeto String
+
+    string.match(regex)
+
+        Retorna array das ocorrências encontradas.
+
+    string.replace(regex, novoValor)
+
+        Substitui trechos do texto.
+
+        Ex: str.replace(/\D/g, "") (Remove tudo que não é número).
+
+    string.split(regex)
+
+        Quebra a string usando o padrão como delimitador.
+
+4. Snippets "Salva-Vidas" (Casos de Uso)
+
+Data (DD/MM/AAAA)
+JavaScript
+
+const regexData = /^\d{2}\/\d{2}\/\d{4}$/;
+
+CPF (Formato 000.000.000-00)
+JavaScript
+
+const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+
+Email Simples (Para Provas)
+JavaScript
+
+const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+Senha Forte Requisito: Mínimo 8 chars, 1 maiúscula, 1 número.
+JavaScript
+
+const regexSenha = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+5. Manipulação de DOM (Passo a Passo)
+
+Use esta estrutura padrão para exercícios que pedem "valide o input ao clicar no botão".
+1. O HTML Exemplo
+HTML
+
+<form>
+    <label for="campoInput">Digite seu CPF:</label>
+    <input type="text" id="campoInput" placeholder="000.000.000-00">
+    <span id="msgFeedback" style="display:none; color: red;">Formato Inválido</span>
+    <button id="btnValidar">Verificar</button>
+</form>
+
+2. O Script de Validação
+JavaScript
+
+document.addEventListener('DOMContentLoaded', () => {
+    // A. Seleção de Elementos
+    const input = document.getElementById('campoInput');
+    const btn = document.getElementById('btnValidar');
+    const feedback = document.getElementById('msgFeedback');
+
+    // B. Definição do Padrão (Ex: CPF)
+    const regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+
+    // C. Adicionar Evento de Clique
+    btn.addEventListener('click', function(e) {
+        // Evita recarregar a página se estiver dentro de <form>
+        e.preventDefault(); 
+
+        // D. Captura do Valor
+        const valorDigitado = input.value;
+
+        // E. Lógica de Teste
+        if (regex.test(valorDigitado)) {
+            // SUCESSO
+            input.style.border = "2px solid green";
+            feedback.innerText = "CPF Válido!";
+            feedback.style.color = "green";
+            feedback.style.display = "block";
+        } else {
+            // ERRO
+            input.style.border = "2px solid red";
+            feedback.innerText = "CPF Inválido. Use o formato 000.000.000-00";
+            feedback.style.color = "red";
+            feedback.style.display = "block";
+        }
+    });
+});
+
+
+Exemplo 
+
+Aqui está um Simulado Prático completo. Tente entender o enunciado antes de olhar a solução, pois é exatamente assim que costuma cair em provas.
+📝 Simulado de Prova: Validação de Cadastro
+O Enunciado (A Questão)
+
+Você deve criar uma validação para um formulário de cadastro de usuário contendo Nome, Email e Senha.
+
+Requisitos:
+
+    HTML: Crie 3 campos de input e 1 botão de "Cadastrar".
+
+    JavaScript: Ao clicar no botão, valide os dados com as seguintes regras:
+
+        Nome: Deve conter apenas letras e espaços (sem números ou símbolos).
+
+        Email: Deve ser um email válido padrão.
+
+        Senha: Deve ter no mínimo 8 caracteres e conter pelo menos 1 número.
+
+    Feedback: Se algum campo estiver inválido, altere a borda dele para vermelho. Se estiver válido, altere para verde. Exiba um alert de "Sucesso" apenas se todos estiverem corretos.
+
+A Solução (Código Completo)
+
+Você pode copiar e colar este código em um arquivo .html para testar no navegador.
+HTML
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Prova Prática Regex</title>
+    <style>
+        /* CSS Básico apenas para visualização */
+        body { font-family: sans-serif; padding: 20px; }
+        .campo { margin-bottom: 15px; }
+        input { padding: 8px; border: 1px solid #ccc; width: 250px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Cadastro de Usuário</h2>
+    <form>
+        <div class="campo">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" placeholder="Apenas letras">
+        </div>
+
+        <div class="campo">
+            <label for="email">E-mail:</label>
+            <input type="text" id="email" placeholder="exemplo@email.com">
+        </div>
+
+        <div class="campo">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" placeholder="Min 8 chars, 1 número">
+        </div>
+
+        <button id="btnCadastrar">Cadastrar</button>
+    </form>
+
+    <script>
+        // 1. SELEÇÃO DO DOM
+        const inputNome = document.getElementById('nome');
+        const inputEmail = document.getElementById('email');
+        const inputSenha = document.getElementById('senha');
+        const btn = document.getElementById('btnCadastrar');
+
+        // 2. DEFINIÇÃO DAS REGEX
+        // ^[a-zA-Z\u00C0-\u00FF ]+$ -> Aceita letras (incluindo acentos) e espaços
+        const regexNome = /^[a-zA-Z\u00C0-\u00FF ]+$/; 
+        
+        // Padrão simples de email
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+        
+        // Lookahead para garantir 1 digito (?=.*\d) e min 8 chars .{8,}
+        const regexSenha = /^(?=.*\d).{8,}$/; 
+
+        // 3. FUNÇÃO AUXILIAR (Para limpar/sujar o input)
+        function validarCampo(input, regex) {
+            if (regex.test(input.value)) {
+                input.style.border = "2px solid green";
+                return true;
+            } else {
+                input.style.border = "2px solid red";
+                return false;
+            }
+        }
+
+        // 4. EVENTO DE CLIQUE
+        btn.addEventListener('click', function(event) {
+            event.preventDefault(); // Impede o form de recarregar a página
+
+            // Executa a validação para cada campo
+            const nomeValido = validarCampo(inputNome, regexNome);
+            const emailValido = validarCampo(inputEmail, regexEmail);
+            const senhaValida = validarCampo(inputSenha, regexSenha);
+
+            // Verifica se TODOS são verdadeiros
+            if (nomeValido && emailValido && senhaValida) {
+                alert("Cadastro realizado com sucesso! ✅");
+                // Aqui você enviaria os dados para o backend
+            } else {
+                console.log("Existem campos inválidos. Corrija-os.");
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+Explicação Passo a Passo (Para sua Revisão)
+
+    Regex do Nome (/^[a-zA-Z\u00C0-\u00FF ]+$/):
+
+        ^ e $: Garantem que a string inteira obedeça à regra.
+
+        a-zA-Z: Letras sem acento.
+
+        \u00C0-\u00FF: (Opcional, mas impressiona na prova) Faixa Unicode que cobre acentos comuns (á, é, ã, ç, etc). Se sua prova for básica, use apenas [a-zA-Z ]+.
+
+        +: Permite nomes compostos ou longos (1 ou mais caracteres).
+
+    Regex da Senha (/^(?=.*\d).{8,}$/):
+
+        (?=.*\d): O Lookahead. Ele "olha para frente" para ver se existe algum dígito (\d) em qualquer lugar, sem consumir caracteres.
+
+        .{8,}: Depois de garantir que tem número, ele verifica se o comprimento total é de 8 ou mais caracteres quaisquer.
+
+    Lógica do DOM:
+
+        Criei uma função validarCampo para não repetir o if/else três vezes. Isso mostra boas práticas de programação (Clean Code) na prova.
+
+        O event.preventDefault() é crucial. Sem ele, o botão dentro do <form> recarrega a página e você não vê o resultado da validação.
+
+Para criar um sistema de cadastro (Frontend) robusto para uma prova ou projeto, o segredo é combinar Regex (para garantir que os dados estão no formato certo) com DOM Events (para dar feedback visual ao usuário enquanto ele digita).
+
+Lembre-se: Regex valida o formato (se parece um email, se a senha é forte). Quem realmente cria o login e salva no banco de dados é o Backend (Java, Node.js, PHP, etc.).
+
+Abaixo, apresento um exemplo completo de um formulário de cadastro que valida:
+
+    Usuário: Mínimo 3 letras.
+
+    Email: Formato padrão.
+
+    Senha Forte: Mínimo 8 caracteres, 1 maiúscula, 1 minúscula, 1 número e 1 caractere especial.
+
+    Confirmação de Senha: Deve ser igual à senha.
+
+O Código Completo (HTML + CSS + JS)
+
+Pode copiar e salvar como um arquivo .html.
+HTML
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Cadastro com Regex</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 350px; }
+        
+        h2 { text-align: center; color: #333; }
+        
+        .grupo-input { margin-bottom: 15px; }
+        
+        label { display: block; margin-bottom: 5px; color: #666; font-size: 0.9em; }
+        
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; outline: none; transition: 0.3s; }
+        
+        /* Classes que o JS vai adicionar */
+        input.valido { border-color: #2ecc71; background-color: #eafaf1; }
+        input.invalido { border-color: #e74c3c; background-color: #fdeaea; }
+        
+        /* Mensagem de erro pequena abaixo do input */
+        .msg-erro { font-size: 0.75em; color: #e74c3c; display: none; margin-top: 5px; }
+        
+        button { width: 100%; padding: 10px; background-color: #333; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
+        button:disabled { background-color: #ccc; cursor: not-allowed; }
+        button:hover:not(:disabled) { background-color: #555; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Criar Conta</h2>
+    <form id="formCadastro">
+        
+        <div class="grupo-input">
+            <label>Usuário</label>
+            <input type="text" id="usuario" placeholder="Mínimo 3 caracteres">
+            <span class="msg-erro">Nome deve ter no mínimo 3 caracteres alfanuméricos.</span>
+        </div>
+
+        <div class="grupo-input">
+            <label>Email</label>
+            <input type="text" id="email" placeholder="seu@email.com">
+            <span class="msg-erro">Digite um email válido.</span>
+        </div>
+
+        <div class="grupo-input">
+            <label>Senha</label>
+            <input type="password" id="senha" placeholder="Senha forte">
+            <span class="msg-erro">Mín. 8 chars, 1 maiúscula, 1 número, 1 símbolo.</span>
+        </div>
+
+        <div class="grupo-input">
+            <label>Confirmar Senha</label>
+            <input type="password" id="confirmaSenha" placeholder="Repita a senha">
+            <span class="msg-erro">As senhas não coincidem.</span>
+        </div>
+
+        <button type="submit" id="btnEnviar" disabled>Cadastrar</button>
+    </form>
+</div>
+
+<script>
+    // 1. SELEÇÃO DE ELEMENTOS
+    const form = document.getElementById('formCadastro');
+    const inputs = document.querySelectorAll('input'); // Seleciona todos inputs
+    const btnEnviar = document.getElementById('btnEnviar');
+
+    // 2. OBJETO COM AS REGEX
+    const patterns = {
+        // Usuário: letras/números, min 3, max 12
+        usuario: /^[a-zA-Z0-9]{3,12}$/,
+        
+        // Email padrão
+        email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        
+        // Senha Forte:
+        // (?=.*[A-Z]) -> Pelo menos 1 Maiúscula
+        // (?=.*[a-z]) -> Pelo menos 1 Minúscula
+        // (?=.*\d)    -> Pelo menos 1 Número
+        // (?=.*[\W])  -> Pelo menos 1 Símbolo (\W = não palavra)
+        // .{8,}       -> Mínimo 8 caracteres
+        senha: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/
+    };
+
+    // 3. FUNÇÃO DE VALIDAÇÃO GERAL
+    function validar(field, regex) {
+        // Se o teste passar, adiciona classe valido, senão invalido
+        if (regex.test(field.value)) {
+            field.className = 'valido';
+            field.nextElementSibling.style.display = 'none'; // Esconde msg erro
+            return true;
+        } else {
+            field.className = 'invalido';
+            field.nextElementSibling.style.display = 'block'; // Mostra msg erro
+            return false;
+        }
+    }
+
+    // 4. FUNÇÃO ESPECÍFICA PARA COMPARAR SENHAS
+    function compararSenhas() {
+        const senha = document.getElementById('senha');
+        const confirma = document.getElementById('confirmaSenha');
+        
+        if (confirma.value === senha.value && confirma.value !== "") {
+            confirma.className = 'valido';
+            confirma.nextElementSibling.style.display = 'none';
+            return true;
+        } else {
+            confirma.className = 'invalido';
+            confirma.nextElementSibling.style.display = 'block';
+            return false;
+        }
+    }
+
+    // 5. EVENT LISTENERS (INPUT)
+    // Adiciona evento 'input' em cada campo para validar enquanto digita
+    inputs.forEach((input) => {
+        input.addEventListener('input', (e) => {
+            
+            // Lógica para saber qual campo está sendo digitado
+            if (e.target.id === 'confirmaSenha') {
+                compararSenhas();
+            } else if (patterns[e.target.id]) {
+                // Chama a função validar passando o input e a regex correspondente
+                validar(e.target, patterns[e.target.id]);
+                
+                // Se mexer na senha original, revalida a confirmação
+                if (e.target.id === 'senha') compararSenhas(); 
+            }
+            
+            checkFormularioValido();
+        });
+    });
+
+    // 6. HABILITAR BOTÃO APENAS SE TUDO ESTIVER VÁLIDO
+    function checkFormularioValido() {
+        // Verifica se existem elementos com a classe 'invalido' ou inputs vazios
+        const invalidos = document.querySelectorAll('.invalido').length;
+        const vazios = Array.from(inputs).some(i => i.value === "");
+        
+        // Se não tiver inválidos nem vazios, habilita o botão
+        if (invalidos === 0 && !vazios) {
+            btnEnviar.disabled = false;
+        } else {
+            btnEnviar.disabled = true;
+        }
+    }
+
+    // 7. ENVIO FINAL
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("Dados validados e prontos para envio ao servidor! 🚀");
+        // Aqui entraria seu código Java/Backend
+    });
+
+</script>
+
+</body>
+</html>
+
+O que você precisa saber para explicar isso em uma prova:
+
+    O Evento input:
+
+        Diferente do change (que só dispara quando você clica fora do campo) ou submit (só no final), o input dispara a cada tecla pressionada. Isso permite validação em tempo real (UX moderna).
+
+    Lookahead na Senha ((?=...)):
+
+        Este é o conceito mais avançado do código.
+
+        (?=.*[A-Z]): Significa "Verifique se, em algum lugar à frente, existe uma letra maiúscula". Ele faz a verificação sem "gastar" os caracteres, permitindo que você faça várias verificações na mesma string.
+
+    Validação Cruzada:
+
+        O campo "Confirmar Senha" não usa Regex. Ele usa lógica de comparação simples (===). Note que no código, se o usuário alterar a "Senha" principal depois de ter digitado a confirmação, eu forço a revalidação da confirmação para evitar erros.
+
+    Classes CSS (classList ou className):
+
+        Em vez de manipular style.border diretamente no JS o tempo todo, eu troco a classe (valido ou invalido). Isso deixa o JS mais limpo e o design no CSS.
+
+

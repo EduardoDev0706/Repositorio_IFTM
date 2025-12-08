@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Final - Eduardo do Carmo</title>
+</head>
+<body>
+
+    <button id="btnMostrar">Mostrar</button>
+
+    <script>
+        // Carrega as inicias do nome armazenado
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", onDOMLoadedPagina2);
+        } else {
+            onDOMLoadedPagina2();
+        }
+
+        function onDOMLoadedPagina2() {
+            // Exibe as iniciais do usuário armazenadas no localStorage
+            const iniciaisArmazenadas = localStorage.getItem('iniciaisUsuario');
+            if (iniciaisArmazenadas) {
+                const elementoIniciais = document.createElement('div');
+                elementoIniciais.textContent = iniciaisArmazenadas;
+                elementoIniciais.style.color = 'green';
+                elementoIniciais.style.fontSize = '35px';
+                elementoIniciais.style.fontStyle = 'italic';
+                elementoIniciais.style.marginTop = '20px';
+                document.body.appendChild(elementoIniciais);
+            }
+
+            // Adiciona o botão "Mostrar" estaticamente na página
+            const botaoMostrar = document.getElementById('btnMostrar');
+            botaoMostrar.addEventListener('click', () => {
+                // Cria o contêiner para a imagem e o parágrafo
+                const container = document.createElement('div');
+                container.style.marginTop = '20px';
+
+                // Determina o número de letras iniciais
+                const numIniciais = iniciaisArmazenadas ? iniciaisArmazenadas.replace(/\s+/g, '').length : 0;
+                if (numIniciais >= 1 && numIniciais <= 6) {
+
+                    // Cria a imagem do dado correspondente ao número de iniciais
+                    const imagemDado = document.createElement('img');
+                    imagemDado.src = `img/lado${numIniciais}.png`;
+                    imagemDado.alt = `Dado com número ${numIniciais}`;
+                    imagemDado.style.cursor = 'pointer';
+                    imagemDado.style.width = '100px';
+                    imagemDado.style.height = '100px';
+
+                    // Cria o parágrafo para o contador
+                    const paragrafoContador = document.createElement('p');
+                    paragrafoContador.textContent = '0';
+                    paragrafoContador.style.fontSize = '20px';
+                    paragrafoContador.style.marginTop = '10px';
+
+                    // Adiciona evento de clique na imagem para incrementar o contador
+                    imagemDado.addEventListener('click', () => {
+                        let contador = parseInt(paragrafoContador.textContent);
+                        contador += 1;
+                        paragrafoContador.textContent = contador.toString();
+                    });
+
+                    // Adiciona a imagem e o parágrafo ao contêiner
+                    container.appendChild(imagemDado);
+                    container.appendChild(paragrafoContador);
+                    document.body.appendChild(container);
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

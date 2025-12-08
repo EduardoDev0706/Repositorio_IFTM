@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova 02 - Eduardo do Carmo</title>
+</head>
+
+<body>
+    <p id="nomeExibido"></p>
+    <select id="inputUsuario">
+        <option value="" disabled selected>Selecione uma opção</option>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+    </select>
+    <button id="btnVisualizar">Visualizar</button>
+
+    <script>
+        // Obtém o nome do usuário da URL  
+        const urlParams = new URLSearchParams(window.location.search);
+        const nomeUsuario = urlParams.get('nome') || 'Usuário';
+        // Exibe o nome do usuário na página
+        document.getElementById('nomeExibido').textContent = `${nomeUsuario}, qual o seu perfil`;
+        // Adiciona evento ao botão para redirecionar com o perfil selecionado
+        document.getElementById('btnVisualizar').addEventListener('click', () => {
+            const perfilSelecionado = document.getElementById('inputUsuario').value;
+            if (perfilSelecionado) {
+                window.location.href = `${perfilSelecionado === 'masculino' ? 'perfilMasculino.html' : 'perfilFeminino.html'}?nome=${encodeURIComponent(nomeUsuario)}`;
+            } else {
+                alert('Por favor, selecione um perfil.');
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

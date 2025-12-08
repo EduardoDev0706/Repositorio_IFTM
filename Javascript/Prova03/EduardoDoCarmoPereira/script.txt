@@ -1,0 +1,63 @@
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", (onDOMLoaded));
+} else {
+    onDOMLoaded();
+}
+
+function onDOMLoaded() {
+    alert("Seja bem-vindo!");
+
+    const botao = document.getElementById('btnValidar');
+    botao.addEventListener('click', (event) => {
+        // Validação com Regex
+        event.preventDefault(); // Evita o envio do formulário
+
+        // Verifica se o campo está vazio
+        const campoInput = document.getElementById('campoInput');
+        const valorInput = campoInput.value.trim();
+
+        if (valorInput === "") {
+            alert("O campo não pode estar vazio.");
+            return;
+        }
+
+        // Regex para validar nome e sobrenome
+        const regexNomeCompleto = /^(?!.*\b(de|da|do|dos|das)\b)[A-Z][a-z]{2,}\s[A-Z][a-z]{2,}(?:\s[A-Z][a-z]{2,})*$/;
+
+        const palavras = valorInput.split(" ");
+        if (palavras.length < 2) {
+            alert("Por favor, insira seu nome completo (pelo menos nome e sobrenome).");
+            return;
+        }
+
+        if (regexNomeCompleto.test(valorInput)) {
+            alert("Nome e sobrenome válidos!");
+        } else {
+            alert("Texto inválido. Certifique-se de que o nome e sobrenome começam com letra maiúscula, não contêm preposições ou caracteres especiais, e têm pelo menos 2 caracteres cada.");
+        }
+
+        // Caso o nome seja válido, extrai as iniciais
+        const iniciais = palavras.map(palavra => palavra.charAt(0).toUpperCase()).join('');
+        const campoIniciais = document.getElementById('iniciaisUsuario');
+        campoIniciais.value = iniciais;
+
+        // O botão de abrir página é habilitado quando o campo é preenchido corretamente
+        const botaoAbrirPagina = document.getElementById('btnAbrirPagina');
+        botaoAbrirPagina.disabled = false;
+
+        // As iniciais do campo são armazenadas no localStorage
+        localStorage.setItem('iniciaisUsuario', iniciais);
+
+        // Adiciona evento ao botão de abrir página
+        botaoAbrirPagina.addEventListener('click', () => {
+            window.open('pagina2.html', '_blank');
+        });
+
+    });
+}
+
+
+
+
+
+
