@@ -2,48 +2,66 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Exercício de Idades</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de Idades - JS</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        p { border-bottom: 1px solid #ccc; padding: 5px 0; }
+    </style>
 </head>
 <body>
-    <div id="saida"></div>
+
+    <h2>Resultados do Processamento</h2>
+    <div id="resultados"></div>
 
     <script>
+        // Vetor de dados
         const idades = [15, 20, 25, 30, 17, 40];
-        const conteiner = document.getElementById("saida");
+        const divResultados = document.getElementById("resultados");
 
-        const imprimir = (texto) => {
+        const exibir = (texto) => {
             const p = document.createElement("p");
             p.textContent = texto;
-            conteiner.appendChild(p);
+            divResultados.appendChild(p);
         };
 
+        // Solicita o valor ao usuário para os itens f, g, h
+        const valorUsuario = Number(prompt("Informe uma idade para comparação (itens f, g, h):"));
+
+        // a) A soma das idades
         const soma = idades.reduce((acc, curr) => acc + curr, 0);
-        imprimir("a) Soma das idades: " + soma);
+        exibir(`a) Soma das idades: ${soma}`);
 
-        const media = soma / idades.length;
-        imprimir("b) Média aritmética simples: " + media.toFixed(2));
+        // b) A média aritmética simples das idades
+        const media = idades.reduce((acc, curr) => acc + curr, 0) / idades.length;
+        exibir(`b) Média aritmética: ${media.toFixed(2)}`);
 
-        const maior = idades.reduce((max, curr) => curr > max ? curr : max, idades[0]);
-        imprimir("c) Maior idade: " + maior);
+        // c) A maior idade
+        const maior = idades.reduce((max, curr) => (curr > max ? curr : max), idades[0]);
+        exibir(`c) Maior idade: ${maior}`);
 
+        // d) As idades ímpares
         const impares = idades.filter(idade => idade % 2 !== 0);
-        imprimir("d) Idades ímpares: " + impares.join(", "));
+        exibir(`d) Idades ímpares: ${impares.join(", ")}`);
 
+        // e) Verificar se todos são maiores de idade (idade >= 18)
         const todosMaiores = idades.every(idade => idade >= 18);
-        imprimir("e) Todos são maiores de idade (>= 18): " + todosMaiores);
+        exibir(`e) Todos são maiores de idade (>= 18)? ${todosMaiores}`);
 
-        const valorRef = parseInt(prompt("Informe um valor de idade para referência:"));
+        // f) Verificar se todas as idades são maiores ou iguais a um valor informado pelo usuário
+        const todosMaioresUsuario = idades.every(idade => idade >= valorUsuario);
+        exibir(`f) Todas as idades são maiores ou iguais a ${valorUsuario}? ${todosMaioresUsuario}`);
 
-        const todasMaioresRef = idades.every(idade => idade >= valorRef);
-        imprimir("f) Todas as idades são maiores ou iguais a " + valorRef + ": " + todasMaioresRef);
+        // g) Exibir todas as idades maiores ou iguais a determinada idade
+        const filtradasUsuario = idades.filter(idade => idade >= valorUsuario);
+        exibir(`g) Idades maiores ou iguais a ${valorUsuario}: ${filtradasUsuario.join(", ")}`);
 
-        const maioresQueRef = idades.filter(idade => idade >= valorRef);
-        imprimir("g) Idades maiores ou iguais a " + valorRef + ": " + maioresQueRef.join(", "));
-
-        const mediaFiltrada = maioresQueRef.length > 0 
-            ? maioresQueRef.reduce((acc, curr) => acc + curr, 0) / maioresQueRef.length 
+        // h) A média das idades das pessoas com idades maiores ou iguais a determinada idade
+        const mediaFiltrada = filtradasUsuario.length > 0 
+            ? filtradasUsuario.reduce((acc, curr) => acc + curr, 0) / filtradasUsuario.length 
             : 0;
-        imprimir("h) Média das idades maiores ou iguais a " + valorRef + ": " + mediaFiltrada.toFixed(2));
+        exibir(`h) Média das idades filtradas (>= ${valorUsuario}): ${mediaFiltrada.toFixed(2)}`);
+
     </script>
 </body>
 </html>
