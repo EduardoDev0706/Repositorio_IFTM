@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício de Idades</title>
+</head>
+<body>
+    <div id="saida"></div>
+
+    <script>
+        const idades = [15, 20, 25, 30, 17, 40];
+        const conteiner = document.getElementById("saida");
+
+        const imprimir = (texto) => {
+            const p = document.createElement("p");
+            p.textContent = texto;
+            conteiner.appendChild(p);
+        };
+
+        const soma = idades.reduce((acc, curr) => acc + curr, 0);
+        imprimir("a) Soma das idades: " + soma);
+
+        const media = soma / idades.length;
+        imprimir("b) Média aritmética simples: " + media.toFixed(2));
+
+        const maior = idades.reduce((max, curr) => curr > max ? curr : max, idades[0]);
+        imprimir("c) Maior idade: " + maior);
+
+        const impares = idades.filter(idade => idade % 2 !== 0);
+        imprimir("d) Idades ímpares: " + impares.join(", "));
+
+        const todosMaiores = idades.every(idade => idade >= 18);
+        imprimir("e) Todos são maiores de idade (>= 18): " + todosMaiores);
+
+        const valorRef = parseInt(prompt("Informe um valor de idade para referência:"));
+
+        const todasMaioresRef = idades.every(idade => idade >= valorRef);
+        imprimir("f) Todas as idades são maiores ou iguais a " + valorRef + ": " + todasMaioresRef);
+
+        const maioresQueRef = idades.filter(idade => idade >= valorRef);
+        imprimir("g) Idades maiores ou iguais a " + valorRef + ": " + maioresQueRef.join(", "));
+
+        const mediaFiltrada = maioresQueRef.length > 0 
+            ? maioresQueRef.reduce((acc, curr) => acc + curr, 0) / maioresQueRef.length 
+            : 0;
+        imprimir("h) Média das idades maiores ou iguais a " + valorRef + ": " + mediaFiltrada.toFixed(2));
+    </script>
+</body>
+</html>
