@@ -1,45 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista 01</title>
-</head>
+<html>
 <body>
-
-    <h2>Idades</h2>
-    <div id="resultados"></div>
-
+    <div id="resultado"></div>
 
     <script>
         const idades = [15, 20, 25, 30, 17, 40];
-        const container = document.getElementById("resultados");
+        const container = document.getElementById("resultado");
 
-        const exibirNoCorpo = (texto) => {
+        const adicionarParagrafo = (texto) => {
             const p = document.createElement("p");
             p.textContent = texto;
             container.appendChild(p);
         };
 
-        // 1) Soma das idades
-        const somaIdades = idades.reduce((acc, idade) => acc + idade, 0);
-        exibirNoCorpo(`Soma das idades: ${somaIdades}`);
+        const soma = idades.reduce((acc, curr) => acc + curr, 0);
+        adicionarParagrafo("Soma das idades: " + soma);
 
-        // 2.a) Média aritmética simples
-        const mediaSimples = somaIdades / idades.length;
-        exibirNoCorpo(`Média das idades: ${mediaSimples.toFixed(2)}`);
+        const media = idades.reduce((acc, curr) => acc + curr, 0) / idades.length;
+        adicionarParagrafo("a) Média aritmética: " + media);
 
-        // 2.b) Maior idade
-        const maiorIdade = idades.reduce((max, idade) => (idade > max ? idade : max), idades[0]);
-        exibirNoCorpo(`Maior idade: ${maiorIdade}$`);
+        const maior = idades.reduce((max, curr) => curr > max ? curr : max, idades[0]);
+        adicionarParagrafo("b) Maior idade: " + maior);
 
-        // 2.c) Idades ímpares
-        const idadesImpares = idades.filter(idade => idade % 2 !== 0);
-        exibirNoCorpo(`Idades ímpares: ${impares.join(", ")}`);
+        const impares = idades.filter(idade => idade % 2 !== 0);
+        adicionarParagrafo("c) Idades ímpares: " + impares.join(", "));
 
-        // 2.d) Todos maiores de idade
         const todosMaiores = idades.every(idade => idade >= 18);
-        exibirNoCorpo(`Todos são maiores de idade? ${todosMaiores}`);
+        adicionarParagrafo("d) Todos são maiores de idade: " + todosMaiores);
+
+        const valorUsuario = parseInt(prompt("Digite uma idade:"));
+
+        const todosMaioresIgualManual = idades.every(idade => idade >= valorUsuario);
+        adicionarParagrafo("e) Todas as idades são maiores ou iguais a " + valorUsuario + ": " + todosMaioresIgualManual);
+
+        const listaMaioresIgualManual = idades.filter(idade => idade >= valorUsuario);
+        adicionarParagrafo("f) Idades maiores ou iguais a " + valorUsuario + ": " + listaMaioresIgualManual.join(", "));
+
+        const mediaMaioresIgualManual = listaMaioresIgualManual.length > 0 
+            ? listaMaioresIgualManual.reduce((acc, curr) => acc + curr, 0) / listaMaioresIgualManual.length 
+            : 0;
+        adicionarParagrafo("g) Média das idades maiores ou iguais a " + valorUsuario + ": " + mediaMaioresIgualManual);
     </script>
 </body>
 </html>
