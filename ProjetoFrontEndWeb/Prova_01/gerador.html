@@ -1,6 +1,15 @@
-import bcrypt from 'https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/+esm';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de data hash</title>
+</head>
+<body>
+    <script type="module">
+        import bcrypt from 'https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/+esm';
 
-const urlPlainJson = 'https://raw.githubusercontent.com/EduardoDev0706/Repositorio_IFTM/refs/heads/main/ProjetoFrontEndWeb/Prova_01/users_plain.json';
+const urlPlainJson = 'https://raw.githubusercontent.com/EduardoDev0706/Repositorio_IFTM/refs/heads/main/ProjetoFrontEndWeb/Prova_01/data/users_plain.json';
 
 async function gerarJsonCriptografado() {
     try {
@@ -24,4 +33,7 @@ async function gerarJsonCriptografado() {
     }
 }
 
-gerarJsonCriptografado()
+gerarJsonCriptografado();
+    </script>
+</body>
+</html>

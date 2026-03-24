@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Prova 01 - Eduardo do Carmo</title>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Acesso ao Sistema</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" required>
+                    <button type="button" id="togglePassword" class="toggle-password-btn" aria-label="Mostrar senha">
+                        👁️
+                    </button>
+                </div>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        <div id="mensagem"></div>
+    </div>
+
+    <script type="module">
+        import bcrypt from 'https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/+esm';
+
+        const urlHashedJson = 'https://raw.githubusercontent.com/EduardoDev0706/Repositorio_IFTM/refs/heads/main/ProjetoFrontEndWeb/Prova_01/data/users_hashed.json'
+
+        const loginForm = document.getElementById('loginForm');
+        const mensagemDiv = document.getElementById('mensagem');
+
+        // Botão que mostra a senha para o usuário 
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePasswordBtn.addEventListener('click', function () {
+            // Verifica o tipo atual e inverte
+            const typeAtual = passwordInput.getAttribute('type');
+            
+            if (typeAtual === 'password') {
+                passwordInput.setAttribute('type', 'text');
+                this.textContent = '🙈'; // Muda para o ícone de 'ocultar'
+                this.setAttribute('aria-label', 'Ocultar senha'); 
+            } else {
+                passwordInput.setAttribute('type', 'password');
+                this.textContent = '👁️'; // Volta para o ícone de 'mostrar'
+                this.setAttribute('aria-label', 'Mostrar senha');
+            }
+        });
+
+        loginForm.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Evita que a página recarregue
+
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+
+            mensagemDiv.textContent = "Verificando...";
+            mensagemDiv.className = "";
+
+            try {
+                // Requisição Assíncrona responsável (AJAX) para buscar o JSON com as senhas criptografadas
+                const response = await fetch(urlHashedJson);
+
+                if (!response.ok) {
+                    throw new Error('Erro ao acessar o arquivo JSON no GitHub');
+                }
+
+                const usersJSON = await response.json();
+
+                // Busca o usuário digitado na lista do JSON
+                const userEncontrado = usersJSON.find(u => u.username === usernameInput);
+
+                if (userEncontrado) {
+                    // Verifica se a senha em texto plano bate com o hash armazenado
+                    const senhaValida = bcrypt.compareSync(passwordInput, userEncontrado.password);
+
+                    if (senhaValida) {
+                        mensagemDiv.textContent = "Login realizado com sucesso! Senhas compatíveis.";
+                        mensagemDiv.className = "sucesso";
+                    } else {
+                        mensagemDiv.textContent = "Senha incorreta. Senhas Diferentes.";
+                        mensagemDiv.className = "erro";
+                    }
+                } else {
+                    mensagemDiv.textContent = "Usuário não encontrado.";
+                    mensagemDiv.className = "erro";
+                }
+
+            } catch (error) {
+                console.error(error);
+                mensagemDiv.textContent = "Erro de conexão. Tente novamente.";
+                mensagemDiv.className = "erro";
+            }
+        });
+    </script>
+    
+</body>
+</html>
