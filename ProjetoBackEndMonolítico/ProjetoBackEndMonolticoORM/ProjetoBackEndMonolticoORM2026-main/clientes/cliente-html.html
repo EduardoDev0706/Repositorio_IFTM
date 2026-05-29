@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+</head>
+<body>
+
+    <h1>Lista de Clientes</h1>
+    <ul id="lista-clientes"></ul>
+
+    <script>
+        async function carregarClientes() {
+            try {
+                const resposta = await fetch('http://localhost:8080/contatos');
+                if (!resposta.ok) {
+                    throw new Error('Erro ao buscar clientes: ' + resposta.status);
+                }
+
+                const clientes = await resposta.json();
+
+                const lista = document.getElementById('lista-clientes');
+                lista.innerHTML = '';
+
+                clientes.forEach(cliente => {
+                    const item = document.createElement('li');
+                    item.textContent = `Código: ${cliente.codigo} - Nome: ${cliente.nome}`;
+                    lista.appendChild(item);
+                });
+
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        }
+    </script>
+
+    <input type="button" value="Carregar Clientes" onclick="carregarClientes();">
+
+</body>
+</html>
