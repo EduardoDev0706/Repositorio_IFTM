@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.edu.iftm.veterinario.selenium.VeterinarioSeleniumTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 27.825 s - in br.edu.iftm.veterinario.selenium.VeterinarioSeleniumTest
