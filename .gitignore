@@ -45,3 +45,4 @@ __pycache__/
 *.hex
 *.elf
 *.bin
+BancoDeDados/stack_overflow/db_stackoverflow.sql
