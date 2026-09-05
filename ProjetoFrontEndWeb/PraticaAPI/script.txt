@@ -1,0 +1,148 @@
+// URL da API que retorna as informações das marcas de motos
+const urlMarcas = 'https://parallelum.com.br/fipe/api/v1/motos/marcas';
+const selectMarca = document.getElementById('marca');
+
+// Função Assíncrona para buscar e renderizar as marcas
+async function carregarMarcas() {
+    try {
+        // 1. Faz a requisição para a API
+        const resposta = await fetch(urlMarcas);
+
+        // 2. Converte a resposta recebida para o formato JSON
+        const marcas = await resposta.json();
+
+        // 3. Para cada marca encontrada, cria a opção no HTML
+        marcas.forEach(marca => {
+            const option = document.createElement('option');
+            option.value = marca.codigo;
+            option.textContent = marca.nome;
+            selectMarca.appendChild(option);
+        });
+    } catch (erro) {
+        console.error('Erro ao buscar as marcas da API: ', erro);
+        alert('Não foi possível carregar as marcas.');
+    }
+}
+
+carregarMarcas();
+
+// Captura o elemento select dos modelos
+const selectModelo = document.getElementById('modelo');
+
+// Adiciona um "event listener" que detecta quando a marca é alterada
+selectMarca.addEventListener('change', async function () {
+    const codigoMarca = this.value; // Pega o código numérico da marca selecionada
+
+    // Se o usuário voltar para a opção vazia, resetamos o campo de modelo
+    if (!codigoMarca) {
+        selectModelo.innerHTML = '<option value="">Escolha primeiro a marca...</option>';
+        selectModelo.disabled = true;
+        return;
+    }
+
+    // Feedback visual enquanto carrega
+    selectModelo.innerHTML = '<option value="">Carregando modelos...</option>';
+    selectModelo.disabled = true;
+
+    try {
+        // Monta a URL dinâmica usando o código da marca escolhida
+        const urlModelos = `https://parallelum.com.br/fipe/api/v1/motos/marcas/${codigoMarca}/modelos`;
+
+        const resposta = await fetch(urlModelos);
+        const dados = await resposta.json();
+
+        // Limpa o select e adiciona a primeira opção padrão
+        selectModelo.innerHTML = '<option value="">Selecione um modelo...</option>';
+
+        // Percorre a lista de modelos e cria as opções
+        dados.modelos.forEach(modelo => {
+            const option = document.createElement('option');
+            option.value = modelo.codigo;
+            option.textContent = modelo.nome;
+            selectModelo.appendChild(option);
+        });
+
+        // Habilita o campo para o usuário poder clicar
+        selectModelo.disabled = false;
+    } catch (erro) {
+        console.error('Erro ao buscar os modelos', erro);
+        selectModelo.innerHTML = '<option value="">Erro ao carregar os modelos</option>';
+    }
+});
+
+// Captura os novos elementos que criamos no HTML
+const selectAno = document.getElementById('ano');
+const divResultado = document.getElementById('resultado');
+
+// 1. Evento para quando o usuário escolher o MODELO
+selectModelo.addEventListener('change', async function () {
+    const codigoMarca = selectMarca.value;
+    const codigoModelo = this.value;
+
+    if (!codigoModelo) {
+        selectAno.innerHTML = '<option value="">Escolha primeiro o modelo...</option>';
+        selectAno.disabled = true;
+        divResultado.innerHTML = ''; // Limpa o resultado
+        return;
+    }
+
+    selectAno.innerHTML = '<option value="">Carregando anos...</option>';
+    selectAno.disabled = true;
+    divResultado.innerHTML = '';
+
+    try {
+        // URL para buscar os anos daquele modelo específico
+        const urlAnos = `https://parallelum.com.br/fipe/api/v1/motos/marcas/${codigoMarca}/modelos/${codigoModelo}/anos`;
+
+        const resposta = await fetch(urlAnos);
+        const anos = await resposta.json();
+
+        selectAno.innerHTML = '<option value="">Selecione o ano...</option>';
+
+        anos.forEach(ano => {
+            const option = document.createElement('option');
+            option.value = ano.codigo;
+            option.textContent = ano.nome;
+            selectAno.appendChild(option);
+        });
+
+        selectAno.disabled = false;
+    } catch (erro) {
+        console.error('Erro ao buscar os anos:', erro);
+        selectAno.innerHTML = '<option value="">Erro ao carregar os anos</option>';
+    }
+});
+
+// 2. Evento para quando o usuário escolher o ANO
+selectAno.addEventListener('change', async function () {
+    const codigoMarca = selectMarca.value;
+    const codigoModelo = selectModelo.value;
+    const codigoAno = this.value;
+
+    if (!codigoAno) {
+        divResultado.innerHTML = '';
+        return;
+    }
+
+    divResultado.innerHTML = 'Consultando a Tabela FIPE...';
+
+    try {
+        // A URL final, que precisa de todas as 3 informações
+        const urlValor = `https://parallelum.com.br/fipe/api/v1/motos/marcas/${codigoMarca}/modelos/${codigoModelo}/anos/${codigoAno}`;
+        
+        const resposta = await fetch(urlValor);
+        const dadosFipe = await resposta.json();
+
+        // Montamos o texto final com os dados que a API nos devolveu
+        divResultado.innerHTML = `
+            O valor atual da <strong>${dadosFipe.Modelo}</strong> ano <strong>${dadosFipe.AnoModelo}</strong> 
+            é de <span style="color: #27ae60;">${dadosFipe.Valor}</span>.
+            <br><small style="font-size: 0.8em; color: #7f8c8d;">Mês de referência: ${dadosFipe.MesReferencia}</small>
+        `;
+
+    } catch (erro) {
+        console.error('Erro ao buscar o valor FIPE:', erro);
+        divResultado.innerHTML = '<span style="color: red;">Erro ao consultar o valor. Tente novamente.</span>';
+    }
+});
+

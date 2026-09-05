@@ -1,0 +1,10 @@
+form {
+    width: 300px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}

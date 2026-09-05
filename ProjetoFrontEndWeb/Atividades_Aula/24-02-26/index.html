@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let usersTable = [
+            {nome:"Wilton", idade: 39, salario: 5000, sexo: "M"},
+            {nome:"Jose", idade: 36, salario: 2400, sexo: "M"},
+            {nome:"Wiltona", idade: 34, salario: 5000, sexo: "F"},
+            {nome:"Josefa", idade: 39, salario: 2450, sexo: "F"}
+        ];
+
+        usersTable.forEach(user => {
+            if (user.idade >= 18)
+            console.log(`${user.nome} tem ${user.idade} anos`)
+        }
+    );
+    
+    </script>
+</body>
+</html>

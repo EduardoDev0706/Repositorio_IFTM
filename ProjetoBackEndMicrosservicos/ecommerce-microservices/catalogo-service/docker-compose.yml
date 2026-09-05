@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: ecommerce_db
+    environment:
+      # Permite rodar o MySQL sem senha para o usuário root (conforme seu arquivo properties)
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      # Cria automaticamente o banco de dados necessário na primeira inicialização
+      MYSQL_DATABASE: db_ecommerce
+    ports:
+      # Mapeia a porta 3306 do seu computador para a porta 3306 do contêiner
+      - "3306:3306"
+    volumes:
+      # Cria um volume persistente para você não perder os dados quando o contêiner parar
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

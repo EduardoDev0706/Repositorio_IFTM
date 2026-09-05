@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V Semana de Tecnologia da Informação - IFTM</title>
+    <style>
+        /* ==========================================================================
+           APLICAÇÃO DAS 10 TÉCNICAS DE VARREDURA DE TEXTOS (PROPOSTA IHC - DR. WILTON)
+           ========================================================================== */
+
+        /* Técnica 2: Aumento sistemático do espaçamento entre as linhas para legibilidade */
+        /* Técnica 8: Definição de margens generosas para criar respiros entre parágrafos */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Técnica 10: Criação de tarjas e sublinhados delimitadores para organização visual */
+        header {
+            background-color: #0b3c5d;
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 6px solid #ffd700; /* Tarja amarela de ênfase superior */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 10px 0 0 0;
+            font-size: 1.15rem;
+            opacity: 0.95;
+        }
+
+        /* Técnica 4: Destaque de títulos de seção com cores e elementos gráficos diferentes */
+        h2.section-title {
+            color: #0b3c5d;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #328cc1; /* Linha de separação entre seções */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Técnica 6: Criação de caixa (seção) com cor de fundo alternativa para as regras */
+        .registration-box {
+            background-color: #eef9f1; /* Fundo verde suave */
+            border-left: 6px solid #28a745; /* Tarja lateral indicadora */
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .registration-box h3 {
+            margin-top: 0;
+            color: #1e7e34;
+            font-size: 1.3rem;
+        }
+
+        /* Técnica 3: Parágrafos curtos, rápidos e totalmente objetivos */
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* Técnica 5: Destaque de palavras-chave do texto original em negrito ou cores vivas */
+        .highlight-alert {
+            font-weight: bold;
+            color: #d9534f; /* Vermelho para atenção crítica */
+        }
+
+        .highlight-tech {
+            font-weight: bold;
+            color: #328cc1; /* Azul para tecnologias */
+        }
+
+        /* Grid de cartões para segmentação espacial das informações (Técnica 6 e 9) */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Técnica 6: Caixas (Cards) com fundos diferentes para isolar as palestras e minicursos */
+        .activity-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Técnica 10: Diferenciação visual por cores de borda para as categorias de atividade */
+        .card-talk {
+            border-top: 5px solid #328cc1; /* Azul para TED Talks */
+        }
+
+        .card-course {
+            border-top: 5px solid #28a745; /* Verde para Minicursos */
+        }
+
+        /* Estrutura flexível para alinhar a foto simulada e dados do palestrante lateralmente */
+        .speaker-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Técnica de Legibilidade com Imagens: Formatação circular padronizada */
+        .speaker-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card-talk .speaker-avatar {
+            border: 2.5px solid #328cc1;
+        }
+
+        .card-course .speaker-avatar {
+            border: 2.5px solid #28a745;
+        }
+
+        .speaker-info-header {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .speaker-info-header h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            color: #1a252f;
+            line-height: 1.3;
+        }
+
+        .speaker-info-header span {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 3px;
+        }
+
+        .activity-theme {
+            font-weight: bold;
+            color: #0b3c5d;
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        /* Técnica 7: Utilização sistemática de listas não ordenadas com tópicos limpos */
+        ul.bullet-list {
+            padding-left: 20px;
+            margin: 15px 0 0 0;
+        }
+
+        ul.bullet-list li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #34495e;
+        }
+
+        /* Selos de pré-requisito (Técnica 5 e 10) */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+
+        .badge-none {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .badge-req {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        footer {
+            background-color: #1d2731;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <section>
+            
+            <div class="activities-grid">
+                
+                <!-- PALESTRA 1 -->
+                <div class="activity-card card-talk">
+                    <div>
+                        <div class="speaker-profile">
+                            <!-- Foto simulada via vetor SVG dinâmico -->
+                            <svg class="speaker-avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="grad-helio" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#328cc1;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#0b3c5d;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="48" fill="url(#grad-helio)" />
+                                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="28">HR</text>
+                            </svg>
+                            <div class="speaker-info-header">
+                                <h3>Helio Rubens Soares</h3>
+                                <span>Líder na AWS (Amazon)</span>
+                            </div>
+                        </div>
+                        <div class="activity-theme">Uso de cloud computing na jornada de sustentabilidade das empresas</div>
+                        <p><em>Resumo:</em> A computação em nuvem tem papel primordial no rastreamento e no alcance de métricas de sustentabilidade de TI corporativa de empresas ao redor do mundo.</p>
+                    </div>
+                    <div>
+                        <ul class="bullet-list">
+                            <li>Especialista em nuvem e mercado educacional na AWS.</li>
+                            <li>Bacharel (UFU) e Mestre em Ciência da Computação (UNICAMP).</li>
+                            <li>Premiado por inovação corporativa por 5 anos pela IT Mídia e PwC.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PALESTRA 2 -->
+                <div class="activity-card card-talk">
+                    <div>
+                        <div class="speaker-profile">
+                            <svg class="speaker-avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="grad-helton" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#e67e22;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#d35400;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="48" fill="url(#grad-helton)" />
+                                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="28">HV</text>
+                            </svg>
+                            <div class="speaker-info-header">
+                                <h3>Helton Valentini</h3>
+                                <span>Sócio-diretor na Ene Soluções</span>
+                            </div>
+                        </div>
+                        <div class="activity-theme">Seja o dono da sua carreira</div>
+                        <p><em>Resumo:</em> Apresentação de um framework estruturado de autoavaliação e redirecionamento de carreira aplicável a profissionais de tecnologia em todos os níveis de senioridade.</p>
+                    </div>
+                    <div>
+                        <ul class="bullet-list">
+                            <li>Bacharel (UNITRI) e Master em Empreendedorismo (Link School of Business).</li>
+                            <li>20 anos de carreira de tecnologia (do Suporte Técnico à Engenharia de Software).</li>
+                            <li>Atua há 12 anos no ecossistema de empreendedorismo de software.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PALESTRA 3 -->
+                <div class="activity-card card-talk">
+                    <div>
+                        <div class="speaker-profile">
+                            <svg class="speaker-avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="grad-almir" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#8e44ad;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="48" fill="url(#grad-almir)" />
+                                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="28">AF</text>
+                            </svg>
+                            <div class="speaker-info-header">
+                                <h3>Almir Garcia Fernandes</h3>
+                                <span>Professor na UFU</span>
+                            </div>
+                        </div>
+                        <div class="activity-theme">A Lei Geral de Proteção de Dados (LGPD) na Internet</div>
+                        <p><em>Resumo:</em> Explanação sob ótica prática e jurídica a respeito do impacto da segurança de dados e privacidade em portais e ecossistemas web.</p>
+                    </div>
+                    <div>
+                        <ul class="bullet-list">
+                            <li>Doutor em Direito Empresarial (PUC-SP).</li>
+                            <li>Professor de Direito de graduação na UFU.</li>
+                            <li>Advogado especialista com ampla atuação no ramo jurídico empresarial.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+</body>
+</html>

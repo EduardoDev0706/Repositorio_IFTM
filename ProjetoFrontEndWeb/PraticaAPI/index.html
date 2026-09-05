@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela FIPE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h1>Consulta de Preço FIPE (Motos)</h1>
+
+    <div class="campo">
+        <label for="marca">Marca:</label>
+        <select id="marca">
+            <option value="">Selecione uma marca...</option>
+        </select>
+    </div>
+
+    <div class="campo">
+        <label for="modelo">Modelo:</label>
+        <select id="modelo" disabled>
+            <option value="">Escolha primeiro a marca...</option>
+        </select>
+    </div>
+
+    <div class="campo">
+        <label for="ano">Ano:</label>
+        <select id="ano" disabled>
+            <option value="">Escolha primeiro o modelo...</option>
+        </select>
+    </div>
+
+    <div id="resultado"></div>
+
+<script src="script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,73 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#cronometro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+#cronometro-display {
+    font-size: 4em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#botoes {
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#btnPlay {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#btnPlay:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+#btnPause {
+    background-color: #ffc107;
+    color: #333;
+}
+
+#btnPause:hover:not(:disabled) {
+    background-color: #e0a800;
+}
+
+#btnStop {
+    background-color: #f44336;
+    color: white;
+}
+
+#btnStop:hover:not(:disabled) {
+    background-color: #d32f2f;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

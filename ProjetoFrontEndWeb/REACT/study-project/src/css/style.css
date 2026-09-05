@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+header, main, footer {
+    border: 1px solid red;
+    padding: 20px;
+}
+
+section {
+    width: 1000px;
+    margin: auto;
+    border: 1px solid red;
+    background-color: yellow;
+}
